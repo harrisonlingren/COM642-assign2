@@ -1,0 +1,15 @@
+{
+  "name": "com642_1718_a16",
+  "version": "1.0.0",
+  "description": "COM642 group A16 - Assignment 2",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.scm.ulster.ac.uk:9922/com642_1718/A16.git"
+  },
+  "author": "",
+  "license": "MIT"
+}
