@@ -1,15 +1,17 @@
 {
-  "name": "com642_1718_a16",
-  "version": "1.0.0",
-  "description": "COM642 group A16 - Assignment 2",
-  "main": "js/index.js",
+  "name": "todo-app",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@gitlab.scm.ulster.ac.uk:9922/com642_1718/A16.git"
-  },
-  "author": "",
-  "license": "MIT"
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11",
+    "serve-favicon": "~2.4.5"
+  }
 }
