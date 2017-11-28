@@ -55,6 +55,8 @@ router.post('/new', (req, res, next) => {
     done: req.body.done
   }
   
+  console.log(req.body);
+  
   // send to DB here
   mdb.connect(db_conn_str, (err, db) => {
     assert.equal(null, err);
@@ -68,7 +70,7 @@ router.post('/new', (req, res, next) => {
       newItem.item_id = newId;
       db.collection('todo').insertOne(newItem, (err, result) => {
         assert.equal(null, err);
-        assert.equal(1, r.insertedCount);
+        assert.equal(1, result.insertedCount);
         
         // send response data
         let resData = {
