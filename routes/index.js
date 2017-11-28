@@ -1,15 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
-module.exports = (items) => {
-  
-  /* GET home page. */
-  router.get('/', function(req, res, next) {
-    res.render('index', {
-      title: 'COM 642 Assignment 2 | A16',
-      todoItems: items
-    });
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', {
+    'itemtitle': 'item.title',
+    'itemid': 0,
+    'itemdone': false,
+    'itemtext': 'item.text',
+    'title': 'Site Title',
+    'user': 'User'
   });
+});
 
-  return router;
-};
+module.exports = router;

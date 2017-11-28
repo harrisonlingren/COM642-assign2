@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-var faker = require('faker');
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -19,25 +17,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-function makeItems(n) {
-  items = [];
-  for (var i = 0; i < n; i++) {
-    let newItem = {
-      id: i,
-      title: faker.lorem.words(),
-      done: faker.random.boolean()
-    };
+let allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    next();
+}; app.use(allowCrossDomain);
 
-    items.push(newItem);
-  }
-
-  return items;
-}
-
-var items = makeItems(8);
-
-var index = require('./routes/index')(items);
-var item = require('./routes/item')(items);
+var index = require('./routes/index');
+var item = require('./routes/item');
 
 app.use('/', index);
 app.use('/item', item);
