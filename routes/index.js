@@ -4,8 +4,13 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   
-  res.status(200).send('It works!');
-  
+  res.render('index', {
+    'itemtitle': 'item.title',
+    'itemid': 0,
+    'itemdone': false,
+    'title': 'Site Title',
+    'user': 'User'
+  });
 });
 
 module.exports = router;

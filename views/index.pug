@@ -26,9 +26,11 @@ block content
   span.open OPEN
   div.cardContainer
     div.itemsView
-      each item in todoItems
+      - var n = 6;
+      while n > 0
         div.card
           div.card-block
-            h4.card-title= item.title
+            h4.card-title= itemtitle
             p.card-text
-            input(type='checkbox' id='todoItemCheck'+item.id checked=item.done)
+            input(type='checkbox' id='todoItemCheck'+itemid checked=itemdone)
+        - n = n - 1;
