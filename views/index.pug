@@ -9,10 +9,8 @@ block content
       div.card
         div.card-block
           h4.card-title(id='itemtitle'+item.id)= item.title
-          p.card-text= itemtext
+          p.card-text(id='itemtext'+item.id)= itemtext
           input(type='checkbox' id='todoItemCheck'+item.id checked=item.done)
-
-            
 
  
             
