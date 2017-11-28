@@ -3,7 +3,6 @@ block content
   div.header
     h1= title
     p.subtitle Welcome to #{title}, #{user}!
-    div.col
     div.col-lg-5
       div.media
         a.pull-left(href="#")
@@ -16,6 +15,15 @@ block content
             span.label.label-default jQuery
             span.label.label-info CakePHP
             span.label.label-default Android
+  div.sidenav(id="mySidenav")
+    a.close CLOSE
+    a(href="#") WErfffew
+    a(href="#") WErfffew
+    a(href="#") WErfffew
+    a(href="#") WErfffew
+    a(href="#") WErfffew
+    a(href="#") WErfffew
+  span.open OPEN
   div.cardContainer
     div.itemsView
       each item in todoItems
@@ -23,4 +31,4 @@ block content
           div.card-block
             h4.card-title= item.title
             p.card-text
-              input(type='checkbox' id='todoItemCheck'+item.id checked=item.done)
+            input(type='checkbox' id='todoItemCheck'+item.id checked=item.done)
