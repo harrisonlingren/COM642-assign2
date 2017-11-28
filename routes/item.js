@@ -21,7 +21,7 @@ router.get('/:id', function(req, res, next) {
     console.log('connected to db!');
     
     // search db for ID: itemId
-    db.collection('todo').findOne({ item_id: itemId }, (err, todoItem) => {
+    db.collection('todo').findOne({ item_id:itemId }, (err, todoItem) => {
       assert.equal(null, err);
       
       // if found, send data
@@ -52,7 +52,7 @@ router.post('/new', (req, res, next) => {
     date: req.body.date,
     category: req.body.category,
     description: req.body.description,
-    done: req.body.done
+    done: parseBoolean(req.body.done)
   }
   
   console.log(req.body);
@@ -64,7 +64,7 @@ router.post('/new', (req, res, next) => {
     // get number of todo items
     db.collection('todo').count( (err, count) => {
       assert.equal(null, err);
-      let newId = count;
+      let newId = parseInt(count);
       
       // insert into db
       newItem.item_id = newId;
@@ -82,42 +82,46 @@ router.post('/new', (req, res, next) => {
   });
 });
 
-
 // PUT: update todo item
 router.put('/:id', (req, res, next) => {
   let update = {
-    item_id: req.params.id,
+    item_id: parseInt(req.params.id),
     title: req.body.title,
     date: req.body.date,
     category: req.body.category,
     description: req.body.description,
-    done: req.body.done
+    done: parseBoolean(req.body.done)
   };
-  
+
+  console.log('updating: ', update);
+
   // send to DB
   mdb.connect(db_conn_str, (err, db) => {
     assert.equal(null, err);
     
-    db.collection('todo').findOne({item_id: update.item_id}, function(err, todoItem) {
+    db.collection('todo').findOne({item_id:update.item_id}, function(err, todoItem) {
       assert.equal(null, err);
-      
+      console.log(todoItem);
       // if item found in db, update
       if (todoItem) {
-        db.collection('todo').updateOne({item_id:update.item_id}, update, (err, result) => {
+        assert.equal(todoItem.item_id, update.item_id);
+
+        let update_id = todoItem._id;
+        db.collection('todo').updateOne({_id:update_id}, update, (err, result) => {
           assert.equal(null, err);
           
           let resData = {
             'message': 'To-do item #' + update.item_id + ' updated',
             'data': update
-          }; res.status(201).json(resData);      
+          }; res.status(200).json(resData);
         });
         
       // if not found
       } else {
         let resData = {
-          'message': 'Error: to-do item #' + update.itemId + ' not found',
+          'message': 'Error: to-do item #' + update.item_id + ' not found',
           'data': todoItem
-        }; res.send(404).json(resData);
+        }; res.status(404).json(resData);
       }
     });
   });
@@ -125,11 +129,11 @@ router.put('/:id', (req, res, next) => {
 
 // DELETE: delete todo item
 router.delete('/:id', (req, res, next) => {
-  let itemId = req.params.id;
+  let itemId = parseInt(req.params.id);
   mdb.connect(db_conn_str, (err, db) => {
     assert.equal(null, err);
     
-    db.collection('todo').findOne({ item_id: itemId }, function(err, todoItem) {
+    db.collection('todo').findOne({ item_id:itemId }, function(err, todoItem) {
       assert.equal(null, err);
 
       // if item found in db, delete
@@ -141,7 +145,7 @@ router.delete('/:id', (req, res, next) => {
 
           let resData = {
             'message': 'To-do item #' + todoItem.item_id + ' deleted!'
-          }; res.status(201).json(resData);
+          }; res.status(200).json(resData);
         });
         
       // if item not found
@@ -154,5 +158,9 @@ router.delete('/:id', (req, res, next) => {
     });
   });
 });
+
+function parseBoolean(bool) {
+  return (bool == 'true' || bool == true);
+}
 
 module.exports = router;

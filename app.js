@@ -28,23 +28,6 @@ let allowCrossDomain = function (req, res, next) {
 
 app.use(allowCrossDomain);
 
-function makeItems(n) {
-  items = [];
-  for (var i = 0; i < n; i++) {
-    let newItem = {
-      id: i,
-      title: faker.lorem.words(),
-      done: faker.random.boolean()
-    };
-
-    items.push(newItem);
-  }
-
-  return items;
-}
-
-var items = makeItems(8);
-
 var index = require('./routes/index');
 var item = require('./routes/item');
 
