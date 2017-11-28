@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  var n = 0;
   h1= title
   p Welcome to #{title}, #{user}!
 
@@ -11,3 +12,6 @@ block content
           h3 #{item.title}
         label(for='todoItemCheck'+item.id)
         input(type='checkbox' id='todoItemCheck'+item.id checked=item.done)
+  div.allBoxes
+    while n < 15
+    div.box
