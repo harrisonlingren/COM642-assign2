@@ -36,8 +36,8 @@ function makeItems(n) {
 
 var items = makeItems(8);
 
-var index = require('./routes/index')(items);
-var item = require('./routes/item')(items);
+var index = require('./routes/index');
+var item = require('./routes/item');
 
 app.use('/', index);
 app.use('/item', item);
