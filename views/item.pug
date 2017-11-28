@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h3 To-do item ##{id}
+  div.todoTitle
+    h5 #{title}
+  div.todoCompleted
+    label(for='todoCompletedBox') Completed?
+    input(type='checkbox' id='todoCompletedBox' checked=done)
