@@ -1,7 +1,6 @@
 extends layout
 
 block content
-  var n = 0;
   h1= title
   p Welcome to #{title}, #{user}!
 
@@ -9,6 +8,12 @@ block content
     each item in todoItems
       div.card
         div.card-block
-          h4.card-title= item.title
-          p.card-text
-            input(type='checkbox' id='todoItemCheck'+item.id checked=item.done)
+          h4.card-title(id='itemtitle'+item.id)= item.title
+          p.card-text= itemtext
+          input(type='checkbox' id='todoItemCheck'+item.id checked=item.done)
+
+            
+
+ 
+            
+           

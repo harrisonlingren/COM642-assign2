@@ -6,10 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+.card{
+  margin: 10px;
+  padding: 10px;
+  width: 400px;
+  float: left;
+}
 
-.box {
-	height: 100px;
-	width: 100px;
-	background-color: blue;
-	margin: 10px;
+.titledone {
+  
+  text-decoration: line-through;
+  
+  
+  
 }

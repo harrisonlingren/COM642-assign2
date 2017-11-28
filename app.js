@@ -25,7 +25,7 @@ function makeItems(n) {
     let newItem = {
       id: i,
       title: faker.lorem.words(),
-      done: faker.random.boolean()
+      done: false
     };
 
     items.push(newItem);

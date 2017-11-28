@@ -7,7 +7,8 @@ module.exports = (items) => {
   router.get('/', function(req, res, next) {
     res.render('index', {
       title: 'COM 642 Assignment 2 | A16',
-      todoItems: items
+      todoItems: items,
+      itemtext: 'test'
     });
   });
 
