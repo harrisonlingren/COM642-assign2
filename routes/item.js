@@ -82,4 +82,77 @@ router.post('/new', (req, res, next) => {
   });
 });
 
+
+// PUT: update todo item
+router.put('/:id', (req, res, next) => {
+  let update = {
+    item_id: req.params.id,
+    title: req.body.title,
+    date: req.body.date,
+    category: req.body.category,
+    description: req.body.description,
+    done: req.body.done
+  };
+  
+  // send to DB
+  mdb.connect(db_conn_str, (err, db) => {
+    assert.equal(null, err);
+    
+    db.collection('todo').findOne({item_id: update.item_id}, function(err, todoItem) {
+      assert.equal(null, err);
+      
+      // if item found in db, update
+      if (todoItem) {
+        db.collection('todo').updateOne({item_id:update.item_id}, update, (err, result) => {
+          assert.equal(null, err);
+          
+          let resData = {
+            'message': 'To-do item #' + update.item_id + ' updated',
+            'data': update
+          }; res.status(201).json(resData);      
+        });
+        
+      // if not found
+      } else {
+        let resData = {
+          'message': 'Error: to-do item #' + update.itemId + ' not found',
+          'data': todoItem
+        }; res.send(404).json(resData);
+      }
+    });
+  });
+});
+
+// DELETE: delete todo item
+router.delete('/:id', (req, res, next) => {
+  let itemId = req.params.id;
+  mdb.connect(db_conn_str, (err, db) => {
+    assert.equal(null, err);
+    
+    db.collection('todo').findOne({ item_id: itemId }, function(err, todoItem) {
+      assert.equal(null, err);
+
+      // if item found in db, delete
+      if (todoItem) {
+        assert.equal(itemId, todoItem.item_id);
+        
+        db.collection('todo').deleteOne({_id:todoItem._id}, function(err, result) {
+          assert.equal(null, err);
+
+          let resData = {
+            'message': 'To-do item #' + todoItem.item_id + ' deleted!'
+          }; res.status(201).json(resData);
+        });
+        
+      // if item not found
+      } else {
+        let resData = {
+          'message': 'Error: to-do item #' + itemId + ' not found',
+          'data': todoItem
+        }; res.status(404).json(resData);
+      }
+    });
+  });
+});
+
 module.exports = router;
