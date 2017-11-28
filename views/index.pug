@@ -6,8 +6,8 @@ block content
 
   div.itemsView
     each item in todoItems
-      div.todoItem
-        a(href='/item/'+item.id)
-          h3 #{item.title}
-        label(for='todoItemCheck'+item.id)
-        input(type='checkbox' id='todoItemCheck'+item.id checked=item.done)
+      div.card
+        div.card-block
+          h4.card-title= item.title
+          p.card-text
+            input(type='checkbox' id='todoItemCheck'+item.id checked=item.done)
