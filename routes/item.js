@@ -112,9 +112,10 @@ function mongoGetAll(req, res, next) {
   // find ID in DB
   mdb.connect(db_conn_str, (err, db) => {
     assert.equal(null, err);
-    console.log('connected to db!');
+    //console.log('connected to db!');
     
-    db.collection('todo').find({}).toArray((todoItems) => {
+    db.collection('todo').find({}).toArray((err, todoItems) => {
+      assert.equal(null, err);
       
       let resData = {
         message: 'All items',
