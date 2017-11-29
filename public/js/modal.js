@@ -57,7 +57,6 @@ $(document).ready(() => {
                 type: 'POST',
                 data: todoItemData,
                 success: (result, status, response) => {
-                    console.log(result, status, response);
                     if (response.status == 201) {
                         createNewCard(result.data);
                     } else {
