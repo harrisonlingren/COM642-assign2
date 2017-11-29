@@ -58,7 +58,7 @@ limitations under the License.*/
  .navbar-top-links li {
     display: inline-block;
 }
-
+      
 .navbar-top-links li:last-child {
     margin-right: 15px;
 }
@@ -84,7 +84,9 @@ limitations under the License.*/
 .navbar-top-links .dropdown-menu li a div {
     white-space: normal;
 }
-
+.dropdown-toggle::after{
+    display: none;
+}
 .navbar-top-links .dropdown-messages,
 .navbar-top-links .dropdown-tasks,
 .navbar-top-links .dropdown-alerts {
@@ -108,6 +110,7 @@ limitations under the License.*/
     right: 0;
     left: auto;
 }
+
 
 
 /* Sidebar Menu Styles */
