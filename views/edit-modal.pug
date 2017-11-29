@@ -1,0 +1,26 @@
+.modal.fade(id="edit-modal")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(type="button" class="close" data-dismiss="modal")
+          span &times;
+        h4.modal-title Edit task
+      .modal-body
+        .form-group
+          label.col-xs-3.control-label Title
+          input.form-control(type="text" id="item-title" name="item-title")
+        .form-group
+          label.col-xs-3.control-label Category
+          select.form-control(type="" id="item-category" name="item-category")
+            option Category 1
+            option Category 2
+            option Category 3
+        .form-group
+          label.col-xs-3.control-label Date
+          input.form-control(type="date" id="item-date" name="item-date")
+        .form-group
+          label.col-xs-3.control-label Description
+          textarea.form-control(placeholder="Description..." id="item-description" name="item-description")
+        .form-group
+            button.btn.btn-default Cancel
+            button.btn.btn-primary(data-dismiss="modal") Save Task
