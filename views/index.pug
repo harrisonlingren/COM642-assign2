@@ -2,11 +2,3 @@ extends layout
 block content
   div.cardContainer
     div.itemsView
-      - var n = 6;
-      while n > 0
-        div.card
-          div.card-block
-            h4.card-title(id='itemtitle'+n)= itemtitle
-          p.card-text(id='itemtext'+n)= itemtext
-          input(type='checkbox' id='todoItemCheck'+n checked=itemdone)
-        - n = n - 1;
