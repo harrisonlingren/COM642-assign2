@@ -76,7 +76,7 @@ function editSuccess(result, status, response) {
     if (response.status == 200) {
         let todoItemId = result.data.item_id;
         $('#todo'+todoItemId+' .card-title').text(result.data.title);
-        $('#todo'+todoItemId+' .cart-text').text(result.data.description);
+        $('#todo'+todoItemId+' .card-text').text(result.data.description);
         $('#todo'+todoItemId+' input[type="checkbox"]').attr('checked', result.data.done);
     } else {
         console.error('Could not edit to-do item!');
