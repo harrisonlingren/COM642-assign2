@@ -17,9 +17,20 @@ function loadTodoCards() {
             let cardTitle = $('<h4 class="card-title"></h4>').text(item.title);
             let cardText = $('<p class"card-text"></p>').text(item.description);
             let cardBox = $('<input type="checkbox" />').attr('checked', item.done);
-            let card = $('<div class="card"></div>').append('<div class="card-block"></div>').append(cardTitle);
+            let card = $('<div class="card" draggable></div>').append('<div class="card-block"></div>').append(cardTitle);
             card.append(cardText); card.append(cardBox);
             container.append(card);
+        });
+
+        // make cards draggable
+        container.sortable({
+            handle: '.card-title',
+            update: () => {
+                $('.card', container).each((index, elem) => {
+                    let cardItem = $(elem),
+                        newIndex = cardItem.index();
+                });
+            }
         });
     });
 }

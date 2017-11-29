@@ -67,7 +67,10 @@ img.media-object.dp.img-circle{
 }
 
 
-
+.card-title {
+  width: 100%;
+  cursor: move;
+}
 
 
 .done {
