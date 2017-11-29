@@ -38,6 +38,12 @@
   margin-right: 4px; 
 }
 
+#new-item {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+}
+
 .page-wrapper {
   height: 100%;
 }

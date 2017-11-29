@@ -2,44 +2,20 @@ $(document).ready( () => {
     // load cards
     loadTodoCards();
 
+    $('#new-item').click(() => {
+        $('#edit-modal button.btn-primary').attr('data-editmode', 'new');
+    });
+
+    
+
 });
 
 function loadTodoCards() {
-    let container = $('.cardContainer');
-
     // GET endpoint for all to-do items
     $.getJSON('/item/all', (res) => {
-        //console.log(res, res.data);
-
         // iterate over array of to-do items and insert '.card' elements
         $.each(res.data, (idx, item) => {
-            let cardTitle = $('<h4 class="card-title"></h4>').text(item.title);
-            let cardText = $('<p class="card-text"></p>').text(item.description);
-            let cardLabel = $('<label>Completed</label>')
-                .attr('for', 'todo'+item.item_id) ;
-            let cardBox = $('<input type="checkbox" />').attr('checked', parseBoolean(item.done));
-            if (parseBoolean(item.done)) {
-                cardTitle.addClass('done'); cardText.addClass('done');
-            }
-            let cardClose = $('<button class="btn btn-circle btn-danger" type="button"></button>')
-                .append('<i class="fa fa-times"></i>');
-
-            let cardEdit = $('<button class="btn btn-circle btn-info" type="button"></button>')
-                .attr('data-toggle', 'modal')
-                .attr('data-target', '#edit-modal')
-                .attr('data-todoid', item.item_id)
-                .append('<i class="fa fa-pencil"></i>');
-
-            let card = $('<div class="card"></div>')
-                .attr('id', 'todo'+item.item_id)
-                .append(cardTitle)
-                .append(cardClose)
-                .append(cardEdit)
-                .append(cardText)
-                .append(cardLabel)
-                .append(cardBox);
-
-            container.append(card);
+            createNewCard(item);
         });
 
         initCardEvents();
@@ -98,6 +74,38 @@ function initCardEvents() {
             }
         });
     });
+}
+
+function createNewCard(item) {
+    let container = $('.cardContainer');
+    
+    let cardTitle = $('<h4 class="card-title"></h4>').text(item.title);
+    let cardText = $('<p class="card-text"></p>').text(item.description);
+    let cardLabel = $('<label>Completed</label>')
+        .attr('for', 'todo'+item.item_id) ;
+    let cardBox = $('<input type="checkbox" />').attr('checked', parseBoolean(item.done));
+    if (parseBoolean(item.done)) {
+        cardTitle.addClass('done'); cardText.addClass('done');
+    }
+    let cardClose = $('<button class="btn btn-circle btn-danger" type="button"></button>')
+        .append('<i class="fa fa-times"></i>');
+
+    let cardEdit = $('<button class="btn btn-circle btn-info" type="button"></button>')
+        .attr('data-toggle', 'modal')
+        .attr('data-target', '#edit-modal')
+        .attr('data-todoid', item.item_id)
+        .append('<i class="fa fa-pencil"></i>');
+
+    let card = $('<div class="card"></div>')
+        .attr('id', 'todo'+item.item_id)
+        .append(cardTitle)
+        .append(cardClose)
+        .append(cardEdit)
+        .append(cardText)
+        .append(cardLabel)
+        .append(cardBox);
+
+    container.append(card);
 }
 
 function parseBoolean(b) {
