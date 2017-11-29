@@ -5,7 +5,7 @@ $(document).ready( () => {
 });
 
 function loadTodoCards() {
-    let container = $('.itemsView');
+    let container = $('.cardContainer');
 
     // GET endpoint for all to-do items
     $.getJSON('/item/all', (res) => {
@@ -44,7 +44,7 @@ function loadTodoCards() {
 }
 
 function initCardEvents() {
-    let container = $('.itemsView');
+    let container = $('.cardContainer');
 
     // make cards draggable
     container.sortable({
@@ -59,15 +59,40 @@ function initCardEvents() {
 
     // clicking checkbox crosses out text/title
     $('.card input[type="checkbox"]').click((e) => {
-        let cardnum = $(e.target).parent().attr('id');
-        cardnum = cardnum[ cardnum.length-1 ];
-        $('#todo'+cardnum+' h4.card-title, #todo'+cardnum+' p.card-text')
-            .toggleClass('done');
+        
+        let todoItemId = $(e.currentTarget).parent().attr('id');
+        todoItemId = parseInt( todoItemId[ todoItemId.length-1] );
+        
+        let itemDone = $('#todo'+todoItemId+' input[type="checkbox"]').is(':checked');
+        $.ajax({
+            url: '/item/'+todoItemId,
+            type: 'PUT',
+            data: { done: itemDone },
+            success: editSuccess,
+            error: () => {
+                console.error('Could not change to-do item status');
+                $('#todo'+todoItemId+' .card-title, #todo'+todoItemId+' .card-text').removeClass('done');
+            }
+        });
+
+        $('#todo'+todoItemId+' .card-title, #todo'+todoItemId+' .card-text').toggleClass('done');
     });
 
     $('.card button.btn-danger').click((e) => {
-        let thisCard = $(e.target).parent();
+        let thisCard = $(e.currentTarget).parent();
         console.log(thisCard);
-        thisCard.remove();
+        let todoItemId = thisCard.attr('id')
+        todoItemId = parseInt( todoItemId[ todoItemId.length-1] );
+
+        $.ajax({
+            url: '/item/' + todoItemId,
+            type: 'DELETE',
+            success: (result, status, response) => {
+                thisCard.remove();
+            },
+            error: (result, status, response) => {
+                console.error(response);
+            }
+        });
     });
 }
