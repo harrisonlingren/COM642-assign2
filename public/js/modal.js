@@ -11,7 +11,6 @@ $(document).ready(() => {
             $('#item-category').val(todoItem.category);
             $('#item-date').val( Date.parse(todoItem.date) );
             $('#item-description').val(todoItem.description);
-            $('#edit-modal button.btn-primary').attr('data-editmode', 'edit');
             $('#edit-modal button.btn-primary').attr('data-todoid', todoItemId);
         });
     });
@@ -57,7 +56,13 @@ $(document).ready(() => {
                 url: '/item/new',
                 type: 'POST',
                 data: todoItemData,
-                success: editSuccess
+                success: (result, status, response) => {
+                    if (response.status == 200) {
+                        createNewCard(result.data);
+                    } else {
+                        console.error('Could not edit to-do item!');
+                    }
+                }
             });
 
         } else {
