@@ -12,7 +12,47 @@ if (!db_conn_str) {
 console.log(db_conn_str);
 
 // GET: get todo item
-router.get('/:id', function(req, res, next) {
+router.get('/:id', (req, res, next) => {
+  res.status(200).json( getData() );
+});
+
+// POST: create todo item
+router.post('/new', (req, res, next) => {
+  res.status(200).json( getData() );
+});
+
+// PUT: update todo item
+router.put('/:id', (req, res, next) => {
+  res.status(200).json( getData() );
+});
+
+// DELETE: delete todo item
+router.delete('/:id', (req, res, next) => {
+  res.status(200).json( getData() );
+});
+
+
+
+// temporary data function because the mongodb connection doesn't work on school network
+function getData() {
+  // temporary code because the mongodb connection doesn't work on school network
+  let d = new Date();
+  d = d.now();
+  return {
+    message: 'Fake data attached',
+    data: {
+      item_id: req.params.id,
+      title: 'item.title',
+      date: d.toDateString(),
+      category: 'item.category',
+      description: 'item.description',
+      done: false
+    }
+  };
+}
+
+// DATABASE FUNCTIONS
+function mongoGet(req, res, next) {
   let itemId = parseInt(req.params.id);
   
   // find ID in DB
@@ -42,10 +82,9 @@ router.get('/:id', function(req, res, next) {
       }    
     });
   });
-});
+}
 
-// POST: create todo item
-router.post('/new', (req, res, next) => {
+function mongoPost(req, res, next) {
   let newItem = {
     item_id: 0,
     title: req.body.title,
@@ -80,10 +119,9 @@ router.post('/new', (req, res, next) => {
       });      
     });
   });
-});
+}
 
-// PUT: update todo item
-router.put('/:id', (req, res, next) => {
+function mongoPut(req, res, next) {
   let update = {
     item_id: parseInt(req.params.id),
     title: req.body.title,
@@ -125,10 +163,9 @@ router.put('/:id', (req, res, next) => {
       }
     });
   });
-});
+}
 
-// DELETE: delete todo item
-router.delete('/:id', (req, res, next) => {
+function mongoDel(req, res, next) {
   let itemId = parseInt(req.params.id);
   mdb.connect(db_conn_str, (err, db) => {
     assert.equal(null, err);
@@ -157,7 +194,7 @@ router.delete('/:id', (req, res, next) => {
       }
     });
   });
-});
+}
 
 function parseBoolean(bool) {
   return (bool == 'true' || bool == true);
