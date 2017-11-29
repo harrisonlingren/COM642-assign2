@@ -14,10 +14,30 @@
   cursor: move;
 }
 
+.card button.btn-danger {
+  position: relative;
+  top: -40px;
+  right: -180px;
+}
+
+.card button.btn-info {
+  position: relative;
+  top: -40px;
+  left: -180px;
+}
+
 .done {
   text-decoration: line-through; 
 }
 
 .itemsView {
   margin-top: 36px;
+}
+
+.card label {
+  margin-right: 4px; 
+}
+
+.page-wrapper {
+  height: 100%;
 }
