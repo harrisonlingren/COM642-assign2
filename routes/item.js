@@ -12,29 +12,29 @@ if (!db_conn_str) {
 console.log(db_conn_str);
 
 // GET: get all todo items
-router.get('/all', (req, res, next) => {
+router.get('/all', mongoGetAll /* (req, res, next) => {
   res.status(200).json( getAllData(11) );
-});
+} */);
 
 // GET: get todo item
-router.get('/:id', (req, res, next) => {
+router.get('/:id', mongoGet /* (req, res, next) => {
   res.status(200).json( getData(req.params.id, 'fetched') );
-});
+} */);
 
 // POST: create todo item
-router.post('/new', (req, res, next) => {
+router.post('/new', mongoPost /* (req, res, next) => {
   res.status(200).json( getData(0, "new") );
-});
+} */);
 
 // PUT: update todo item
-router.put('/:id', (req, res, next) => {
+router.put('/:id', mongoPut /* (req, res, next) => {
   res.status(200).json( getData(req.params.id, "updated") );
-});
+} */);
 
 // DELETE: delete todo item
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', mongoDel /* (req, res, next) => {
   res.status(200).json( getData(req.params.id, "deleted") );
-});
+} */);
 
 // temporary data function because the mongodb connection doesn't work on school network
 function getData(id, msg) {
@@ -104,6 +104,22 @@ function mongoGet(req, res, next) {
           'data': todoItem
         }; res.status(404).json(resData);
       }    
+    });
+  });
+}
+
+function mongoGetAll(req, res, next) {
+  // find ID in DB
+  mdb.connect(db_conn_str, (err, db) => {
+    assert.equal(null, err);
+    console.log('connected to db!');
+    
+    db.collection('todo').find({}).toArray((todoItems) => {
+      
+      let resData = {
+        message: 'All items',
+        data: todoItems
+      }; res.status(200).json(resData);
     });
   });
 }
