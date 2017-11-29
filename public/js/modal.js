@@ -1,12 +1,11 @@
 $(document).ready(() => {
-
+    
     // change edit modal content based on the task that was clicked
     let modal = $('#edit-modal');
     modal.on('show.bs.modal', (event) => {
         let btn = $(event.relatedTarget);
         let todoItemId = btn.data('todoid');
         $.getJSON('/item/'+todoItemId, (res) => {
-            console.log()
             let todoItem = res.data;
             $('#item-title').val(todoItem.title);
             $('#item-category').val(todoItem.category);
@@ -24,7 +23,6 @@ $(document).ready(() => {
         let todoItemId = saveBtn.data('todoid');
 
         if (editMode == 'edit') {
-            console.log('editing!');
             // ajax call to update task
 
             let d = new Date( $('#item-date').val() );
@@ -44,7 +42,6 @@ $(document).ready(() => {
             });
 
         } else if (editMode == 'new') {
-            console.log('creating!');
             // ajax call to add new task
 
             let d = new Date( $('#item-date').val() );
@@ -71,7 +68,6 @@ $(document).ready(() => {
 
 
 function editSuccess(result, status, response) {
-    console.log('edited successfully!', result);
     if (response.status == 200) {
         let todoItemId = result.data.item_id;
         $('#todo'+todoItemId+' .card-title').text(result.data.title);
