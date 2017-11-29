@@ -57,7 +57,8 @@ $(document).ready(() => {
                 type: 'POST',
                 data: todoItemData,
                 success: (result, status, response) => {
-                    if (response.status == 200) {
+                    console.log(result, status, response);
+                    if (response.status == 201) {
                         createNewCard(result.data);
                     } else {
                         console.error('Could not edit to-do item!');
