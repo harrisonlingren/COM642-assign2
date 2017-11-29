@@ -51,6 +51,11 @@ img.media-object.dp.img-circle{
   float: left;
 }
 
+.card-title {
+  width: 100%;
+  cursor: move;
+}
+
 .done {
   text-decoration: line-through; 
 }
