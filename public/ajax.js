@@ -16,11 +16,14 @@ function loadTodoCards() {
         $.each(res.data, (idx, item) => {
             let cardTitle = $('<h4 class="card-title"></h4>').text(item.title);
             let cardText = $('<p class="card-text"></p>').text(item.description);
+            let cardLabel = $('<label>Completed</label>')
+                .attr('for', 'todo'+item.item_id) ;
             let cardBox = $('<input type="checkbox" />').attr('checked', item.done);
             let card = $('<div class="card"></div>')
                 .attr('id', 'todo'+item.item_id)
                 .append(cardTitle)
                 .append(cardText)
+                .append(cardLabel)
                 .append(cardBox);
 
             container.append(card);
