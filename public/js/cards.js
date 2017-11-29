@@ -17,7 +17,10 @@ function loadTodoCards() {
             let cardText = $('<p class="card-text"></p>').text(item.description);
             let cardLabel = $('<label>Completed</label>')
                 .attr('for', 'todo'+item.item_id) ;
-            let cardBox = $('<input type="checkbox" />').attr('checked', item.done);
+            let cardBox = $('<input type="checkbox" />').attr('checked', parseBoolean(item.done));
+            if (parseBoolean(item.done)) {
+                cardTitle.addClass('done'); cardText.addClass('done');
+            }
             let cardClose = $('<button class="btn btn-circle btn-danger" type="button"></button>')
                 .append('<i class="fa fa-times"></i>');
 
@@ -70,8 +73,9 @@ function initCardEvents() {
             data: { done: itemDone },
             success: editSuccess,
             error: () => {
-                console.error('Could not change to-do item status');
-                $('#todo'+todoItemId+' .card-title, #todo'+todoItemId+' .card-text').removeClass('done');
+                console.error('Could not change to-do item status to ' + itemDone);
+                $('#todo'+todoItemId+' .card-title, #todo'+todoItemId+' .card-text').toggleClass('done');
+                $(this).attr('checked', this.checked);
             }
         });
 
@@ -80,7 +84,6 @@ function initCardEvents() {
 
     $('.card button.btn-danger').click((e) => {
         let thisCard = $(e.currentTarget).parent();
-        console.log(thisCard);
         let todoItemId = thisCard.attr('id')
         todoItemId = parseInt( todoItemId[ todoItemId.length-1] );
 
@@ -95,4 +98,8 @@ function initCardEvents() {
             }
         });
     });
+}
+
+function parseBoolean(b) {
+    return b == 'true';
 }
