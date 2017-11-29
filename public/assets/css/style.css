@@ -46,7 +46,7 @@ limitations under the License.*/
     
 
 .navbar-static-side ul li {
-    border-bottom:1px solid #84B899 !important;
+    border-bottom:1px solid #007a99 !important;
 }
 
 /* Navigation */
@@ -115,10 +115,9 @@ limitations under the License.*/
 
 /* Sidebar Menu Styles */
 
- .sidebar-search {
+.sidebar-search {
     padding: 15px;
 }
-
 .arrow {
     float: right;
 }

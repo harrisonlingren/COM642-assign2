@@ -13,7 +13,7 @@
         span.icon-bar
       |                 
       a.navbar-brand(href='index.html')
-        img(src='assets/img/logo.png', alt='')
+        h1 TO-DO APP
     // end navbar-header
     // navbar-top-links
     ul.nav.navbar-top-links.navbar-right
@@ -233,144 +233,44 @@
     // end navbar-top-links
   // end navbar top
   // navbar side
-  nav.navbar-default.navbar-static-side(role='navigation')
-    // sidebar-collapse
-    .sidebar-collapse
-      // side-menu
-      ul#side-menu.nav
-        li
-          // user image section
-          .user-section
-            .user-section-inner
-              img(src="http://www.qygjxz.com/data/out/190/5691490-profile-pictures.png")
-            |                             
-            .user-info
-              div
-                | Jonny 
-                strong Deen
-              |                                 
-              .user-text-online
-                span.user-circle-online.btn.btn-success.btn-circle
-                | &nbsp;Belfast
-          // end user image section
-        |                     
-        li.sidebar-search
-          // search section
-          .input-group.custom-search-form
-            input.form-control(type='text', placeholder='Search...')
-            |                             
-            span.input-group-btn
-              button.btn.btn-default(type='button')
-                i.fa.fa-search
-          // end search section
-        |                     
-        li
-          a(href='index.html')
-            i.fa.fa-dashboard.fa-fw
-            | Dashboard
-        |                     
-        li
-          a(href='#')
-            i.fa.fa-bar-chart-o.fa-fw
-            | Charts
-            span.fa.arrow
-          |                         
-          ul.nav.nav-second-level
+  div.nav-side
+      nav.navbar-default.navbar-static-side(role='navigation')
+        // sidebar-collapse
+        .sidebar-collapse
+          // side-menu
+          ul#side-menu.nav
             li
-              a(href='flot.html') Flot Charts
-            |                             
-            li
-              a(href='morris.html') Morris Charts
-          // second-level-items
-        |                     
-        li
-          a(href='timeline.html')
-            i.fa.fa-flask.fa-fw
-            | Timeline
-        |                     
-        li
-          a(href='tables.html')
-            i.fa.fa-table.fa-fw
-            | Tables
-        |                     
-        li
-          a(href='forms.html')
-            i.fa.fa-edit.fa-fw
-            | Forms
-        |                     
-        li
-          a(href='#')
-            i.fa.fa-wrench.fa-fw
-            | UI Elements
-            span.fa.arrow
-          |                         
-          ul.nav.nav-second-level
-            li
-              a(href='panels-wells.html') Panels and Wells
-            |                             
-            li
-              a(href='buttons.html') Buttons
-            |                             
-            li
-              a(href='notifications.html') Notifications
-            |                             
-            li
-              a(href='typography.html') Typography
-            |                             
-            li
-              a(href='grid.html') Grid
-          // second-level-items
-        |                     
-        li
-          a(href='#')
-            i.fa.fa-sitemap.fa-fw
-            | Multi-Level Dropdown
-            span.fa.arrow
-          |                         
-          ul.nav.nav-second-level
-            li
-              a(href='#') Second Level Item
-            |                             
-            li
-              a(href='#') Second Level Item
-            |                             
-            li
-              a(href='#')
-                | Third Level 
-                span.fa.arrow
-              |                                 
-              ul.nav.nav-third-level
-                li
-                  a(href='#') Third Level Item
-                |                                     
-                li
-                  a(href='#') Third Level Item
-                |                                     
-                li
-                  a(href='#') Third Level Item
-                |                                     
-                li
-                  a(href='#') Third Level Item
-              // third-level-items
-          // second-level-items
-        |                     
-        li.active
-          a(href='#')
-            i.fa.fa-files-o.fa-fw
-            | Sample Pages
-            span.fa.arrow
-          |                         
-          ul.nav.nav-second-level
-            li.selected
-              a(href='blank.html') Blank Page
-            |                             
-            li
-              a(href='login.html') Login Page
-          // second-level-items
-      // end side-menu
-    // end sidebar-collapse
-  // end navbar side
-  // page-wrapper
+              // user image section
+              .user-section
+                button.btn.btn-default.btn-circle.btn-close(type="button")
+                    i.fa.fa-times
+                .user-section-inner
+                  img(src="http://www.qygjxz.com/data/out/190/5691490-profile-pictures.png")
+                |                             
+                .user-info
+                  div
+                    | Jonny 
+                    strong Deen
+                  |                                 
+                  .user-text-online
+                    span.user-circle-online.btn.btn-success.btn-circle
+                    | &nbsp;Belfast
+              // end user image section
+            |                     
+            li.sidebar-search
+              // search section
+              .input-group.custom-search-form
+                input.form-control(type='text', placeholder='Search...')
+                |                             
+                span.input-group-btn
+                  button.btn.btn-default(type='button')
+                    i.fa.fa-search
+              // end search s
+              // second-level-items
+          // end side-menu
+        // end sidebar-collapse
+      // end navbar side
+      // page-wrapper
   #page-wrapper
     .row
       // Page Header
