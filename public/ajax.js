@@ -15,10 +15,14 @@ function loadTodoCards() {
         // iterate over array of to-do items and insert '.card' elements
         $.each(res.data, (idx, item) => {
             let cardTitle = $('<h4 class="card-title"></h4>').text(item.title);
-            let cardText = $('<p class"card-text"></p>').text(item.description);
+            let cardText = $('<p class="card-text"></p>').text(item.description);
             let cardBox = $('<input type="checkbox" />').attr('checked', item.done);
-            let card = $('<div class="card" draggable></div>').append('<div class="card-block"></div>').append(cardTitle);
-            card.append(cardText); card.append(cardBox);
+            let card = $('<div class="card"></div>')
+                .attr('id', 'todo'+item.item_id)
+                .append(cardTitle)
+                .append(cardText)
+                .append(cardBox);
+
             container.append(card);
         });
 
@@ -31,6 +35,14 @@ function loadTodoCards() {
                         newIndex = cardItem.index();
                 });
             }
+        });
+
+        // clicking checkbox crosses out text/title
+        $('.card input[type="checkbox"]').click((e) => {
+            let cardnum = $(e.target).parent().attr('id');
+            cardnum = cardnum[ cardnum.length-1 ];
+            $('#todo'+cardnum+' h4.card-title, #todo'+cardnum+' p.card-text')
+                .toggleClass('done');
         });
     });
 }
