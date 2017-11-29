@@ -10,7 +10,7 @@ Author: http://binarytheme.com
 .user-section {
     margin-top:20px;
     font-size:22px;
-    background-color:rgb(83, 163, 163);
+    background-color:#ffffff;
 }
 .user-section-inner {
     height: 65px;
@@ -39,7 +39,7 @@ Author: http://binarytheme.com
 }
 .user-text-online {
     font-size:18px;
-    color:#fff
+    color:black;
 }
 .user-circle-online {
     width: 15px!important;
@@ -60,39 +60,39 @@ color: #FFFFFF;
 padding: 20px 15px;
 }
 #side-menu {
-    background-color:#04B173;
+    background-color: #003d4d;
 }
 
  #side-menu a {
-            color:#fff;
-           border-bottom: 1px solid #84B899 !important;
-           height: 55px;
-        }
-        .selected {
-            background-color:rgb(83, 163, 163);
-        }
+    color:#fff;
+    border-bottom: 1px solid #ffffff !important;
+    height: 55px;
+}
+.selected {
+    background-color:rgb(83, 163, 163);
+}
 /* back colors */
-        .blue {
-            background-color:rgb(113, 159, 241);
-        }
-         .green {
-            background-color:rgb(144, 236, 192);
-        }
-          .red {
-            background-color:rgb(255, 102, 133);
-        }
-        .yellow {
-            background-color:rgb(237, 253, 46);
-        }
+.blue {
+    background-color:rgb(113, 159, 241);
+}
+.green {
+    background-color:rgb(144, 236, 192);
+}
+  .red {
+    background-color:rgb(255, 102, 133);
+}
+.yellow {
+    background-color:rgb(237, 253, 46);
+}
 
   /* No border */
 .no-boder {
-    border:0px solid #5bc0de !important;
+    border:0px solid #ffffff !important;
 }
 /* tap nvbar Section */
 
 #navbar {
-    background-color:rgb(83, 163, 163);
+    background-color:rgb(0, 51, 77);
 }
 
 .navbar-brand {
@@ -103,10 +103,10 @@ padding: 20px 15px;
 }
 .top-label {
     position: absolute;
-top: 50%;
-right: 50%;
-margin-top: -24px;
-margin-right: -24px;
+    top: 50%;
+    right: 50%;
+    margin-top: -24px;
+    margin-right: -24px;
 }
 
 /*large font*/
@@ -122,7 +122,7 @@ margin-right: -24px;
     margin:5px;
 }
 .navbar-default {
-border-color: #27A6BE;
+border-color: #ffffff;
 }
 /*media queries*/
 
