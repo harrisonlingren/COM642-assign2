@@ -13,35 +13,35 @@ console.log(db_conn_str);
 
 // GET: get todo item
 router.get('/:id', (req, res, next) => {
-  res.status(200).json( getData() );
+  res.status(200).json( getData(req.params.id) );
 });
 
 // POST: create todo item
 router.post('/new', (req, res, next) => {
-  res.status(200).json( getData() );
+  res.status(200).json( getData(req.params.id) );
 });
 
 // PUT: update todo item
 router.put('/:id', (req, res, next) => {
-  res.status(200).json( getData() );
+  res.status(200).json( getData(req.params.id) );
 });
 
 // DELETE: delete todo item
 router.delete('/:id', (req, res, next) => {
-  res.status(200).json( getData() );
+  res.status(200).json( getData(req.params.id) );
 });
 
 
 
 // temporary data function because the mongodb connection doesn't work on school network
-function getData() {
+function getData(id) {
   // temporary code because the mongodb connection doesn't work on school network
   let d = new Date();
   d = d.now();
   return {
     message: 'Fake data attached',
     data: {
-      item_id: req.params.id,
+      item_id: id,
       title: 'item.title',
       date: d.toDateString(),
       category: 'item.category',
