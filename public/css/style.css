@@ -41,3 +41,25 @@
 .page-wrapper {
   height: 100%;
 }
+
+.navbar-toggle {
+  display: block;
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  color: white;
+  margin-top: 12px;
+  border: none;
+  font-size: x-large;
+}
+
+.navbar-toggle:hover {
+  background-color: transparent !important;
+}
+
+.navbar-brand h1 {
+  margin: 0;
+  margin-left: 48px;
+  margin-top: 12px;
+  color: white !important;
+}
