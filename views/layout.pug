@@ -2,36 +2,29 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css', integrity='sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb', crossorigin='anonymous')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    //BOOTSTRAP STYLES
+    link(href="plugins/bootstrap/bootstrap.css", rel="stylesheet")
+    link(href="font-awesome/css/font-awesome.css", rel="stylesheet")
+    link(href="plugins/pace/pace-theme-big-counter.css", rel="stylesheet")
+    link(href="css/vendor/style.css", rel="stylesheet")
+    link(href="css/vendor/main-style.css", rel="stylesheet")
+    link(href="plugins/morris/morris-0.4.3.min.css", rel="stylesheet")
+    link(href="css/style.css", rel="stylesheet")
+    
+    //BOOTSTRAP SCRIPTS
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
-    script(src='todoCards.js')
-    script(src="nav.js")
-  body
-    div.header
-      h1= title
-      p.subtitle Welcome to #{title}, #{user}!
-      div.col-lg-5
-        div.media
-          a.pull-left(href="#")
-          img.media-object.dp.img-circle(src="http://www.qygjxz.com/data/out/190/5691490-profile-pictures.png")
-          div.media-body
-            h4.media-heading Hardik Sondagar <small> Belfast </small>
-            h5 Software Developer at <a href="http://gridle.in">Gridle.in</a>
-            hr(style="margin:8px auto")
-            span.label.label-default HTML5/CSS3
-            span.label.label-default jQuery
-            span.label.label-info CakePHP
-            span.label.label-default Android
-                
-    div.sidenav(id="mySidenav")
-      a.close CLOSE
-      a(href="#") WErfffew
-      a(href="#") WErfffew
-      a(href="#") WErfffew
-      a(href="#") WErfffew
-      a(href="#") WErfffew
-      a(href="#") WErfffew
-    span.open OPEN
-
-    block content
+    script(src="plugins/bootstrap/bootstrap.min.js")
+    script(src="plugins/metisMenu/jquery.metisMenu.js")
+    script(src="plugins/pace/pace.js")
+    script(src="plugins/morris/raphael-2.1.0.min.js")
+    script(src="plugins/morris/morris.js")
+    script(src="js/vendor/dashboard-demo.js")
+    
+    //SCRIPTS
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.min.js')
+    script(src="js/nav.js")
+    script(src="js/cards.js")
+    script(src="js/modal.js")
+    // wrapper
+    body
+      include nav

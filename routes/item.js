@@ -11,42 +11,67 @@ if (!db_conn_str) {
 
 console.log(db_conn_str);
 
+// GET: get all todo items
+router.get('/all', (req, res, next) => {
+  res.status(200).json( getAllData(11) );
+});
+
 // GET: get todo item
 router.get('/:id', (req, res, next) => {
-  res.status(200).json( getData(req.params.id) );
+  res.status(200).json( getData(req.params.id, 'fetched') );
 });
 
 // POST: create todo item
 router.post('/new', (req, res, next) => {
-  res.status(200).json( getData(req.params.id) );
+  res.status(200).json( getData(0, "new") );
 });
 
 // PUT: update todo item
 router.put('/:id', (req, res, next) => {
-  res.status(200).json( getData(req.params.id) );
+  res.status(200).json( getData(req.params.id, "updated") );
 });
 
 // DELETE: delete todo item
 router.delete('/:id', (req, res, next) => {
-  res.status(200).json( getData(req.params.id) );
+  res.status(200).json( getData(req.params.id, "deleted") );
 });
 
-
-
 // temporary data function because the mongodb connection doesn't work on school network
-function getData(id) {
+function getData(id, msg) {
   // temporary code because the mongodb connection doesn't work on school network
   let d = new Date;
   return {
-    message: 'Fake data attached',
+    message: 'Fake data: ' + msg,
     data: {
       item_id: id,
-      title: 'item.title',
+      title: 'item #'+id,
       date: d.toGMTString(),
       category: 'item.category',
       description: 'item.description',
       done: false
     }
+  };
+}
+
+function getAllData(n) {
+  // temporary code because the mongodb connection doesn't work on school network
+  let d = new Date;
+  d = d.toGMTString();
+  let resData = [];
+  for (var i = 0; i < n; i++) {
+    resData.push({
+      item_id: i,
+      title: 'item #'+i,
+      date: d,
+      category: 'item.category',
+      description: 'item.description',
+      done: false
+    });
+  }
+  
+  return {
+    message: 'All fake data',
+    data: resData
   };
 }
 
