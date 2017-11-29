@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var faker = require('faker');
-var mdb = require('mongodb').MongoClient,
-    assert = require('assert');
+var mdb = require('mongodb').MongoClient;
+var assert = require('assert');
     
 var db_conn_str = process.env.DB_CONN_STR || null;
 if (!db_conn_str) {
@@ -12,68 +12,29 @@ if (!db_conn_str) {
 console.log(db_conn_str);
 
 // GET: get all todo items
-router.get('/all', (req, res, next) => {
+router.get('/all', mongoGetAll /* (req, res, next) => {
   res.status(200).json( getAllData(11) );
-});
+} */);
 
 // GET: get todo item
-router.get('/:id', (req, res, next) => {
+router.get('/:id', mongoGet /* (req, res, next) => {
   res.status(200).json( getData(req.params.id, 'fetched') );
-});
+} */);
 
 // POST: create todo item
-router.post('/new', (req, res, next) => {
+router.post('/new', mongoPost /* (req, res, next) => {
   res.status(200).json( getData(0, "new") );
-});
+} */);
 
 // PUT: update todo item
-router.put('/:id', (req, res, next) => {
+router.put('/:id', mongoPut /* (req, res, next) => {
   res.status(200).json( getData(req.params.id, "updated") );
-});
+} */);
 
 // DELETE: delete todo item
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', mongoDel /* (req, res, next) => {
   res.status(200).json( getData(req.params.id, "deleted") );
-});
-
-// temporary data function because the mongodb connection doesn't work on school network
-function getData(id, msg) {
-  // temporary code because the mongodb connection doesn't work on school network
-  let d = new Date;
-  return {
-    message: 'Fake data: ' + msg,
-    data: {
-      item_id: id,
-      title: 'item #'+id,
-      date: d.toGMTString(),
-      category: 'item.category',
-      description: 'item.description',
-      done: false
-    }
-  };
-}
-
-function getAllData(n) {
-  // temporary code because the mongodb connection doesn't work on school network
-  let d = new Date;
-  d = d.toGMTString();
-  let resData = [];
-  for (var i = 0; i < n; i++) {
-    resData.push({
-      item_id: i,
-      title: 'item #'+i,
-      date: d,
-      category: 'item.category',
-      description: 'item.description',
-      done: false
-    });
-  }
-  
-  return {
-    message: 'All fake data',
-    data: resData
-  };
-}
+} */);
 
 // DATABASE FUNCTIONS
 function mongoGet(req, res, next) {
@@ -104,6 +65,23 @@ function mongoGet(req, res, next) {
           'data': todoItem
         }; res.status(404).json(resData);
       }    
+    });
+  });
+}
+
+function mongoGetAll(req, res, next) {
+  // find ID in DB
+  mdb.connect(db_conn_str, (err, db) => {
+    assert.equal(null, err);
+    //console.log('connected to db!');
+    
+    db.collection('todo').find({}).toArray((err, todoItems) => {
+      assert.equal(null, err);
+      
+      let resData = {
+        message: 'All items',
+        data: todoItems
+      }; res.status(200).json(resData);
     });
   });
 }
@@ -146,16 +124,28 @@ function mongoPost(req, res, next) {
 }
 
 function mongoPut(req, res, next) {
-  let update = {
-    item_id: parseInt(req.params.id),
-    title: req.body.title,
-    date: req.body.date,
-    category: req.body.category,
-    description: req.body.description,
-    done: parseBoolean(req.body.done)
-  };
 
-  console.log('updating: ', update);
+  let update = {};
+  // determine update method (just the status or the entire record)
+  if (Object.keys(req.body).length == 1 && ('done' in req.body) ) {
+    update = {
+      item_id: parseInt(req.params.id),
+      done: req.body.done
+    };
+  } else if (req.body.title && req.body.category && req.body.description && req.body.date && ('done' in req.body)) {
+    update = {
+      item_id: parseInt(req.params.id),
+      title: req.body.title,
+      date: req.body.date,
+      category: req.body.category,
+      description: req.body.description,
+      done: parseBoolean(req.body.done)
+    };
+  } else {
+    update = {};
+    res.sendStatus(400);
+    return;
+  }
 
   // send to DB
   mdb.connect(db_conn_str, (err, db) => {
@@ -163,18 +153,32 @@ function mongoPut(req, res, next) {
     
     db.collection('todo').findOne({item_id:update.item_id}, function(err, todoItem) {
       assert.equal(null, err);
-      console.log(todoItem);
+
       // if item found in db, update
       if (todoItem) {
         assert.equal(todoItem.item_id, update.item_id);
 
-        let update_id = todoItem._id;
-        db.collection('todo').updateOne({_id:update_id}, update, (err, result) => {
+        // create object to hold updated properties
+        let finalUpdateObj = {};
+        Object.keys(todoItem).forEach( (key, val) => {
+          if (key == '_id') {
+            return;
+          }
+
+          if (update.hasOwnProperty(key)) {
+            finalUpdateObj[key] = update[key];
+          } else {
+            finalUpdateObj[key] = todoItem[key];
+          } console.log(finalUpdateObj);
+        });
+
+        // write to database
+        db.collection('todo').updateOne({item_id: update.item_id}, finalUpdateObj, (err, result) => {
           assert.equal(null, err);
           
           let resData = {
             'message': 'To-do item #' + update.item_id + ' updated',
-            'data': update
+            'data': finalUpdateObj
           }; res.status(200).json(resData);
         });
         
