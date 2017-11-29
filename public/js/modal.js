@@ -32,7 +32,7 @@ $(document).ready(() => {
                 title: $('#item-title').val(),
                 category: $('#item-category').val(),
                 date: d,
-                done: ( $('#todo'+todoItemId+' input[type="checkbox"]').attr('checked') ? true : false ),
+                done: ( $('#todo'+todoItemId+' input[type="checkbox"]').is(':checked') ),
                 description: $('#item-description').val()
             };
 
@@ -52,7 +52,7 @@ $(document).ready(() => {
                 title: $('#item-title').val(),
                 category: $('#item-category').val(),
                 date: d,
-                done: ( $('#todo'+todoItemId+' input[type="checkbox"]').attr('checked') ? true : false ),
+                done: ( $('#todo'+todoItemId+' input[type="checkbox"]').is(':checked') ),
                 description: $('#item-description').val()
             };
 
