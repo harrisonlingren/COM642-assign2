@@ -45,11 +45,30 @@ img.media-object.dp.img-circle{
   width:700px;
 }
 .card{
+
   margin: 10px;
   padding: 10px;
   width: 400px;
   float: left;
+  background-color: #f1f1f1;
+  color: black;
+  border: 1px solid #d3d3d3;
+  text-align: center;
+  z-index: 9;
+
 }
+
+#mydivheader {
+    padding: 5px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    background-color: #f1f1f1;
+}
+
+
+
+
 
 .done {
   text-decoration: line-through; 
@@ -109,21 +128,7 @@ img.media-object.dp.img-circle{
   cursor: pointer;
 }
 
-#mydiv {
-    position: absolute;
-    z-index: 9;
-    background-color: #f1f1f1;
-    text-align: center;
-    border: 1px solid #d3d3d3;
-}
 
-#mydivheader {
-    padding: 10px;
-    cursor: move;
-    z-index: 10;
-    background-color: #2196F3;
-    color: #fff;
-}
 
 
 

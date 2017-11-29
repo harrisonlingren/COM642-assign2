@@ -4,12 +4,10 @@ block content
     div.itemsView
       - var n = 6;
       while n > 0
-        div.card
+        div.card(id="mydivheader")
           div.card-block
-            h4.card-title(id='itemtitle'+n)= itemtitle
+          h4.card-title(id='itemtitle'+n)= itemtitle
           p.card-text(id='itemtext'+n)= itemtext
           input(type='checkbox' id='todoItemCheck'+n checked=itemdone)
         - n = n - 1;
-  div(id="mydiv")
-    div(id="mydivheader")
-    p Move me
+
