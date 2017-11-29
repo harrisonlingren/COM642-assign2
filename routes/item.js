@@ -36,14 +36,13 @@ router.delete('/:id', (req, res, next) => {
 // temporary data function because the mongodb connection doesn't work on school network
 function getData(id) {
   // temporary code because the mongodb connection doesn't work on school network
-  let d = new Date();
-  d = d.now();
+  let d = new Date;
   return {
     message: 'Fake data attached',
     data: {
       item_id: id,
       title: 'item.title',
-      date: d.toDateString(),
+      date: d.toGMTString(),
       category: 'item.category',
       description: 'item.description',
       done: false
