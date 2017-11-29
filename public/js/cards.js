@@ -1,13 +1,6 @@
 $(document).ready( () => {
     // load cards
     loadTodoCards();
-
-    $('#new-item').click(() => {
-        $('#edit-modal button.btn-primary').attr('data-editmode', 'new');
-    });
-
-    
-
 });
 
 function loadTodoCards() {
@@ -74,6 +67,16 @@ function initCardEvents() {
             }
         });
     });
+
+    // FAB for creating new to-do item
+    $('#new-item').click(() => {
+        $('#edit-modal button.btn-primary').attr('data-editmode', 'new');
+    });
+
+    // edit buttons on cards
+    $('.edit-btn').click(() => {
+        $('#edit-modal button.btn-primary').attr('data-editmode', 'edit');
+    });
 }
 
 function createNewCard(item) {
@@ -90,7 +93,7 @@ function createNewCard(item) {
     let cardClose = $('<button class="btn btn-circle btn-danger" type="button"></button>')
         .append('<i class="fa fa-times"></i>');
 
-    let cardEdit = $('<button class="btn btn-circle btn-info" type="button"></button>')
+    let cardEdit = $('<button class="btn btn-circle btn-info edit-btn" type="button"></button>')
         .attr('data-toggle', 'modal')
         .attr('data-target', '#edit-modal')
         .attr('data-todoid', item.item_id)

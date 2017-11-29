@@ -4,12 +4,10 @@ var faker = require('faker');
 var mdb = require('mongodb').MongoClient;
 var assert = require('assert');
     
-var db_conn_str = process.env.DB_CONN_STR || null;
+var db_conn_str = process.env.DB_CONN_STR || 'mongodb://db_user:db_pass@ds123796.mlab.com:23796/com642-a2-a16';
 if (!db_conn_str) {
   console.error('DB_CONN_STR variable not set!');
 }
-
-console.log(db_conn_str);
 
 // GET: get all todo items
 router.get('/all', mongoGetAll /* (req, res, next) => {
@@ -23,7 +21,7 @@ router.get('/:id', mongoGet /* (req, res, next) => {
 
 // POST: create todo item
 router.post('/new', mongoPost /* (req, res, next) => {
-  res.status(200).json( getData(0, "new") );
+  res.status(201).json( getData(0, "new") );
 } */);
 
 // PUT: update todo item
