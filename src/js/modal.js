@@ -7,11 +7,9 @@ $(document).ready(() => {
         let todoItemId = btn.data('todoid');
 
         // if editing, get card details from cached data
-        console.log(todoItemId);
         if (todoItemId) {
             let todoItem = todoItemsData[todoItemId];
-            console.log(todoItem);
-            let d = new Date(todoItem.date)
+            let d = new Date(todoItem.date);
             d = d.toISOString().substring(0,10);
             $('#item-title').val(todoItem.title);
             $('#item-category').val(todoItem.category);

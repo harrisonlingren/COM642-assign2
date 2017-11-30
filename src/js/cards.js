@@ -57,7 +57,7 @@ function initCardEvents() {
     // Card delete button
     $('.card .btn.btn-danger').click((e) => {
         let thisCard = $(e.currentTarget).parent();
-        let todoItemId = thisCard.attr('id')
+        let todoItemId = thisCard.attr('id');
         todoItemId = parseInt( todoItemId[ todoItemId.length-1] );
 
         $.ajax({
