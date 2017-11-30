@@ -3,12 +3,15 @@ $(document).ready( () => {
     loadTodoCards();
 });
 
+const todoItemsData = [];
+
 function loadTodoCards() {
     // GET endpoint for all to-do items
     $.getJSON('/item/all', (res) => {
         // iterate over array of to-do items and insert '.card' elements
         $.each(res.data, (idx, item) => {
             createNewCard(item);
+            todoItemsData.push(item);
         });
 
         initCardEvents();
