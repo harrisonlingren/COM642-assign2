@@ -9,9 +9,13 @@ function getCards() {
         $.each(res.data, (idx, item) => {
             buildArray(item);
         });
-
+        number();
         alerts();
     });
+}
+function number(){
+    var length = cardsArray.length;
+    $("span.top-label.label.label-warning").text(length);
 }
 function alerts(){
     $.each(cardsArray, (idx, item) => {
