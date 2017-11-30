@@ -26,3 +26,23 @@
         .form-group
             button.btn.btn-default(data-dismiss="modal") Cancel
             button.btn.btn-primary(data-dismiss="modal" data-editmode="new") Save Task
+            
+.modal.fade(id="settings-modal")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(type="button" class="close" data-dismiss="modal")
+          span &times;
+        h4.modal-title User Settings
+      .modal-body
+        .form-group
+          label.col-xs-3.control-label Template
+          select.form-control(type="" id="template" name="template")
+            option Red
+            option Dark
+            option Original
+            option White
+            option Retro
+        .form-group
+            button.btn.btn-default(data-dismiss="modal") Cancel
+            button.btn.btn-primary.save-template(data-dismiss="modal" data-editmode="new") Save Template
