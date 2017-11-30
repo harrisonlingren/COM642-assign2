@@ -17,7 +17,7 @@ function getCards() {
 function alerts() {
     $('.dropdown-alerts').empty();
     $.each(cardsArray, (idx, item) => {
-        var i = $('<i class="fa fa-comment fa-fw"></i>');
+        var i = $('<i class="fa fa-tasks fa-fw"></i>');
         var span = $('<span class="pull-right text-muted small"></span>').text('# minutes ago');
         var div = $('<div></div>').append(i).append(item.title).append(span);
         var a = $('<a href="#"></a>').append(div);

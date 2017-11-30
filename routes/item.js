@@ -9,9 +9,11 @@ if (!db_conn_str) {
   console.error('DB_CONN_STR variable not set!');
 }
 
+var itemCount = 12;
+
 // GET: get all todo items
 router.get('/all', /* mongoGetAll */ (req, res, next) => {
-  res.status(200).json( getAllData(12) );
+  res.status(200).json( getAllData(itemCount) );
 });
 
 // GET: get todo item
@@ -21,7 +23,7 @@ router.get('/:id', /* mongoGet */ (req, res, next) => {
 
 // POST: create todo item
 router.post('/new', /* mongoPost */ (req, res, next) => {
-  res.status(201).json( getData(0, "new") );
+  res.status(201).json( getData(itemCount++, "new") );
 });
 
 // PUT: update todo item
@@ -31,7 +33,7 @@ router.put('/:id', /* mongoPut */ (req, res, next) => {
 
 // DELETE: delete todo item
 router.delete('/:id', /* mongoDel */ (req, res, next) => {
-  res.status(200).json( getData(req.params.id, "deleted") );
+  res.status(200).json( getData(itemCount--, "deleted") );
 });
 
 
