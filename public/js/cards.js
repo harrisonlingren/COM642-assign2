@@ -1,6 +1,7 @@
 $(document).ready( () => {
     // load cards
     loadTodoCards();
+	
 });
 
 const todoItemsData = [];
@@ -117,3 +118,6 @@ function createNewCard(item) {
 function parseBoolean(b) {
     return b == 'true';
 }
+
+
+
