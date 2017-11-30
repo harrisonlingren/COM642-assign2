@@ -10,29 +10,29 @@ if (!db_conn_str) {
 }
 
 // GET: get all todo items
-router.get('/all', mongoGetAll /* (req, res, next) => {
-  res.status(200).json( getAllData(11) );
-} */);
+router.get('/all', /* mongoGetAll */ (req, res, next) => {
+  res.status(200).json( getAllData(12) );
+});
 
 // GET: get todo item
-router.get('/:id', mongoGet /* (req, res, next) => {
+router.get('/:id', /* mongoGet */ (req, res, next) => {
   res.status(200).json( getData(req.params.id, 'fetched') );
-} */);
+});
 
 // POST: create todo item
-router.post('/new', mongoPost /* (req, res, next) => {
+router.post('/new', /* mongoPost */ (req, res, next) => {
   res.status(201).json( getData(0, "new") );
-} */);
+});
 
 // PUT: update todo item
-router.put('/:id', mongoPut /* (req, res, next) => {
+router.put('/:id', /* mongoPut */ (req, res, next) => {
   res.status(200).json( getData(req.params.id, "updated") );
-} */);
+});
 
 // DELETE: delete todo item
-router.delete('/:id', mongoDel /* (req, res, next) => {
+router.delete('/:id', /* mongoDel */ (req, res, next) => {
   res.status(200).json( getData(req.params.id, "deleted") );
-} */);
+});
 
 // DATABASE FUNCTIONS
 function mongoGet(req, res, next) {
