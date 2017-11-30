@@ -3,12 +3,15 @@ $(document).ready( () => {
     loadTodoCards();
 });
 
+const todoItemsData = [];
+
 function loadTodoCards() {
     // GET endpoint for all to-do items
     $.getJSON('/item/all', (res) => {
         // iterate over array of to-do items and insert '.card' elements
         $.each(res.data, (idx, item) => {
             createNewCard(item);
+            todoItemsData.push(item);
         });
 
         initCardEvents();
@@ -51,9 +54,10 @@ function initCardEvents() {
         $('#todo'+todoItemId+' .card-title, #todo'+todoItemId+' .card-text').toggleClass('done');
     });
 
-    $('.card button.btn-danger').click((e) => {
+    // Card delete button
+    $('.card .btn.btn-danger').click((e) => {
         let thisCard = $(e.currentTarget).parent();
-        let todoItemId = thisCard.attr('id')
+        let todoItemId = thisCard.attr('id');
         todoItemId = parseInt( todoItemId[ todoItemId.length-1] );
 
         $.ajax({
@@ -61,6 +65,8 @@ function initCardEvents() {
             type: 'DELETE',
             success: (result, status, response) => {
                 thisCard.remove();
+                todoItemsData.splice(todoItemId, 1);
+                alerts();
             },
             error: (result, status, response) => {
                 console.error(response);
@@ -71,6 +77,13 @@ function initCardEvents() {
     // FAB for creating new to-do item
     $('#new-item').click(() => {
         $('#edit-modal button.btn-primary').attr('data-editmode', 'new');
+
+        // reset modal form inputs
+        $('#item-title').val('');
+        $('#item-category').val('');
+        $('#item-date').val('');
+        $('#item-description').val('');
+        $('#edit-modal button.btn-primary').attr('');
     });
 
     // edit buttons on cards
@@ -112,5 +125,8 @@ function createNewCard(item) {
 }
 
 function parseBoolean(b) {
-    return b == 'true';
+    return (b == 'true' || b == true);
 }
+
+
+

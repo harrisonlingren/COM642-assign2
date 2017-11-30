@@ -4,14 +4,16 @@ var faker = require('faker');
 var mdb = require('mongodb').MongoClient;
 var assert = require('assert');
     
-var db_conn_str = process.env.DB_CONN_STR || 'mongodb://db_user:db_pass@ds123796.mlab.com:23796/com642-a2-a16';
+var db_conn_str = process.env.DB_CONN_STR || 'mongodb://db_user:db_pass@178.62.91.15:80/todo';
 if (!db_conn_str) {
   console.error('DB_CONN_STR variable not set!');
 }
 
+var itemCount = 12;
+
 // GET: get all todo items
 router.get('/all', mongoGetAll /* (req, res, next) => {
-  res.status(200).json( getAllData(11) );
+  res.status(200).json( getAllData(itemCount) );
 } */);
 
 // GET: get todo item
@@ -21,7 +23,7 @@ router.get('/:id', mongoGet /* (req, res, next) => {
 
 // POST: create todo item
 router.post('/new', mongoPost /* (req, res, next) => {
-  res.status(201).json( getData(0, "new") );
+  res.status(201).json( getData(itemCount++, "new") );
 } */);
 
 // PUT: update todo item
@@ -31,8 +33,61 @@ router.put('/:id', mongoPut /* (req, res, next) => {
 
 // DELETE: delete todo item
 router.delete('/:id', mongoDel /* (req, res, next) => {
-  res.status(200).json( getData(req.params.id, "deleted") );
+  res.status(200).json( getData(itemCount--, "deleted") );
 } */);
+
+
+// NON-DATABASE data functions
+// temporary data function because the mongodb connection doesn't work on school network
+function getData(id) {
+  // temporary code because the mongodb connection doesn't work on school network
+  let d = new Date;
+  return {
+    message: 'Fake data attached',
+    data: {
+      item_id: id,
+      title: 'item #'+id,
+      date: getDate(),
+      category: getCategory(),
+      description: getSentence(),
+      done: false
+    }
+  };
+}
+
+// temporary code because the mongodb connection doesn't work on school network
+function getAllData(n) {
+  let resData = [];
+  for (var i = 0; i < n; i++) {
+    resData.push({
+      item_id: i,
+      title: 'item #'+i,
+      date: getDate(),
+      category: getCategory(),
+      description: getSentence(),
+      done: false
+    });
+  }
+  
+  return {
+    message: 'All fake data',
+    data: resData
+  };
+}
+
+function getDate() {
+  let d = new Date;
+  return d.toGMTString();
+}
+
+function getSentence() {
+  return faker.lorem.sentence();
+}
+
+function getCategory() {
+  let randCatId = Math.floor(Math.random() * 4);
+  return ['University', 'Housework', 'Career', 'Activities', 'Miscellaneous'][randCatId];
+}
 
 // DATABASE FUNCTIONS
 function mongoGet(req, res, next) {
@@ -88,7 +143,7 @@ function mongoPost(req, res, next) {
   let newItem = {
     item_id: 0,
     title: req.body.title,
-    date: req.body.date,
+    date: new Date(req.body.date),
     category: req.body.category,
     description: req.body.description,
     done: parseBoolean(req.body.done)
@@ -128,13 +183,13 @@ function mongoPut(req, res, next) {
   if (Object.keys(req.body).length == 1 && ('done' in req.body) ) {
     update = {
       item_id: parseInt(req.params.id),
-      done: req.body.done
+      done: parseBoolean(req.body.done)
     };
   } else if (req.body.title && req.body.category && req.body.description && req.body.date && ('done' in req.body)) {
     update = {
       item_id: parseInt(req.params.id),
       title: req.body.title,
-      date: req.body.date,
+      date: new Date(req.body.date),
       category: req.body.category,
       description: req.body.description,
       done: parseBoolean(req.body.done)

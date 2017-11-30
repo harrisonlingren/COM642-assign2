@@ -10,8 +10,8 @@ $(document).ready( function() {
 
     // show if collapsed
     } else {
-      $(".nav-side").animate({'width': '250px'});
-      $("#page-wrapper").animate({'margin-left': '250px'});
+      $(".nav-side").animate({'width': '278px'});
+      $("#page-wrapper").animate({'margin-left': '278px'});
       $('.sidebar-collapse').show();
       $('.nav-side').attr('data-collapsed', 'false');
     }

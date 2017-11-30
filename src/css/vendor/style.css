@@ -38,11 +38,9 @@ limitations under the License.*/
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
+    margin-left: 278px;
      background-color:rgb(209, 212, 216);
 }
-
-
-
     
 
 .navbar-static-side ul li {
@@ -117,6 +115,8 @@ limitations under the License.*/
 
 .sidebar-search {
     padding: 15px;
+    width: 278px;
+    background-color: #003d4d;
 }
 .arrow {
     float: right;
