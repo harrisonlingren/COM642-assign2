@@ -3,7 +3,7 @@ $(document).ready( () => {
     $(".settings-panel").hide();
     $('i.fa-bell').parent().click( () => { alerts();
     });
-    $("button.btn.btn-primary.save-template").parent().click( () => { setTemplate();
+    $("button.btn.btn-primary.save-template").parent().click( () => { setTemplate(); });
 });
 
 function getCards() {
@@ -12,12 +12,11 @@ function getCards() {
         // iterate over array of to-do items and insert '.card' elements
         $.each(res.data, (idx, item) => {
             buildArray(item);
-        });
-        number();
-        alerts();
+        }); number(); alerts();        
     });
 }
-function number(){
+
+function number() {
     var length = cardsArray.length;
     $("span.top-label.label.label-warning").text(length);
 }
@@ -36,10 +35,6 @@ function alerts() {
 }
 
 var cardsArray = [];
-function buildArray(item){
+function buildArray(item) {
     cardsArray.push(item);
-}
-    
-function setTemplate(){
-    
 }

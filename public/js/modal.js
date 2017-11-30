@@ -5,14 +5,20 @@ $(document).ready(() => {
     modal.on('show.bs.modal', (event) => {
         let btn = $(event.relatedTarget);
         let todoItemId = btn.data('todoid');
-        $.getJSON('/item/'+todoItemId, (res) => {
-            let todoItem = res.data;
+
+        // if editing, get card details from cached data
+        console.log(todoItemId);
+        if (todoItemId) {
+            let todoItem = todoItemsData[todoItemId];
+            console.log(todoItem);
+            let d = new Date(todoItem.date)
+            d = d.toISOString().substring(0,10);
             $('#item-title').val(todoItem.title);
             $('#item-category').val(todoItem.category);
-            $('#item-date').val( Date.parse(todoItem.date) );
+            $('#item-date').val( d );
             $('#item-description').val(todoItem.description);
             $('#edit-modal button.btn-primary').attr('data-todoid', todoItemId);
-        });
+        }        
     });
 
     let saveBtn = $('#edit-modal button.btn-primary');

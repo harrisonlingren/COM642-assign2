@@ -1,7 +1,6 @@
 $(document).ready( () => {
     // load cards
     loadTodoCards();
-	
 });
 
 const todoItemsData = [];
@@ -55,7 +54,8 @@ function initCardEvents() {
         $('#todo'+todoItemId+' .card-title, #todo'+todoItemId+' .card-text').toggleClass('done');
     });
 
-    $('.card button.btn-danger').click((e) => {
+    // Card delete button
+    $('.card .btn.btn-danger').click((e) => {
         let thisCard = $(e.currentTarget).parent();
         let todoItemId = thisCard.attr('id')
         todoItemId = parseInt( todoItemId[ todoItemId.length-1] );
@@ -77,6 +77,13 @@ function initCardEvents() {
     // FAB for creating new to-do item
     $('#new-item').click(() => {
         $('#edit-modal button.btn-primary').attr('data-editmode', 'new');
+
+        // reset modal form inputs
+        $('#item-title').val('');
+        $('#item-category').val('');
+        $('#item-date').val('');
+        $('#item-description').val('');
+        $('#edit-modal button.btn-primary').attr('');
     });
 
     // edit buttons on cards
