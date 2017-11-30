@@ -65,6 +65,8 @@ function initCardEvents() {
             type: 'DELETE',
             success: (result, status, response) => {
                 thisCard.remove();
+                todoItemsData.splice(todoItemId, 1);
+                alerts();
             },
             error: (result, status, response) => {
                 console.error(response);
