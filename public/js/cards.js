@@ -1,6 +1,7 @@
 $(document).ready( () => {
     // load cards
     loadTodoCards();
+	
 });
 
 const todoItemsData = [];
@@ -64,6 +65,8 @@ function initCardEvents() {
             type: 'DELETE',
             success: (result, status, response) => {
                 thisCard.remove();
+                todoItemsData.splice(todoItemId, 1);
+                alerts();
             },
             error: (result, status, response) => {
                 console.error(response);
@@ -117,3 +120,6 @@ function createNewCard(item) {
 function parseBoolean(b) {
     return b == 'true';
 }
+
+
+
