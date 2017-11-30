@@ -14,7 +14,11 @@ $(document).ready( () => {
     });
 
     // if category button clicked, filter by category
-    $('')
+    $('.categories button').click((e) => {
+        let category = $(e.target).text();
+        if (category == 'All tasks') { filterCards('', 'all'); return; }
+        filterCards(category, 'category');
+    })
 
 });
 
@@ -33,7 +37,9 @@ function filterCards(filterTerm, mode) {
             if (todoItem.category == filterTerm) {
                 results.push(todoItem);
             }
-        }        
+        } else if (mode == 'all') {
+            results.push(todoItem);
+        }
     });
 
     // clear cards and re-build from filtered results

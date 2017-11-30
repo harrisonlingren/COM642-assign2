@@ -44,10 +44,10 @@ function getData(id) {
     message: 'Fake data attached',
     data: {
       item_id: id,
-      title: 'item.title',
-      date: d.toGMTString(),
-      category: 'item.category',
-      description: 'item.description',
+      title: 'item #'+id,
+      date: getDate(),
+      category: getCategory(),
+      description: getSentence(),
       done: false
     }
   };
@@ -55,16 +55,14 @@ function getData(id) {
 
 // temporary code because the mongodb connection doesn't work on school network
 function getAllData(n) {
-  let d = new Date;
-  d = d.toGMTString();
   let resData = [];
   for (var i = 0; i < n; i++) {
     resData.push({
       item_id: i,
       title: 'item #'+i,
-      date: d,
-      category: 'item.category',
-      description: 'item.description',
+      date: getDate(),
+      category: getCategory(),
+      description: getSentence(),
       done: false
     });
   }
@@ -75,7 +73,19 @@ function getAllData(n) {
   };
 }
 
+function getDate() {
+  let d = new Date;
+  return d.toGMTString();
+}
 
+function getSentence() {
+  return faker.lorem.sentence();
+}
+
+function getCategory() {
+  let randCatId = Math.floor(Math.random() * 4);
+  return ['University', 'Housework', 'Career', 'Activities', 'Miscellaneous'][randCatId];
+}
 
 // DATABASE FUNCTIONS
 function mongoGet(req, res, next) {
