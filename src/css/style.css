@@ -1,3 +1,5 @@
+/* COM 642 A16 Customization */
+
 .card{
   margin: 10px;
   padding: 10px;
@@ -70,5 +72,6 @@
   color: white !important;
 }
 
-
-
+#page-wrapper { 
+  margin-left: 278px;
+}

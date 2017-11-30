@@ -18,8 +18,7 @@ $(document).ready( () => {
         let category = $(e.target).text();
         if (category == 'All tasks') { filterCards('', 'all'); return; }
         filterCards(category, 'category');
-    })
-
+    });
 });
 
 function filterCards(filterTerm, mode) {

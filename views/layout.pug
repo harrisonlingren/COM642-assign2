@@ -4,27 +4,14 @@ html
     title To-do App
     meta(name="viewport" content="width=device-width")
 
-    //BOOTSTRAP STYLES
-    link(href="plugins/bootstrap/bootstrap.css", rel="stylesheet")
-    link(href="font-awesome/css/font-awesome.css", rel="stylesheet")
-    link(href="plugins/pace/pace-theme-big-counter.css", rel="stylesheet")
-    link(href="css/vendor/style.css", rel="stylesheet")
-    link(href="css/vendor/main-style.css", rel="stylesheet")
-    link(href="plugins/morris/morris-0.4.3.min.css", rel="stylesheet")
-    link(href="css/style.css", rel="stylesheet")
+    // STYLES
+    link(href="css/bundle.min.css", rel="stylesheet")
     
-    //BOOTSTRAP SCRIPTS
+    // SCRIPTS
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
-    script(src="plugins/bootstrap/bootstrap.min.js")
-    
-    //SCRIPTS
     script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.min.js')
-    script(src="js/nav.js")
-    script(src="js/nav-icons.js")
-    script(src="js/cards.js")
-    script(src="js/modal.js")
-    script(src="js/search.js")
+    script(src='js/bundle.min.js')
     
-    // wrapper
+    // BODY
     body
       include nav
