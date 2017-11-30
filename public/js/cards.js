@@ -125,7 +125,7 @@ function createNewCard(item) {
 }
 
 function parseBoolean(b) {
-    return b == 'true';
+    return (b == 'true' || b == true);
 }
 
 
