@@ -9,9 +9,11 @@ if (!db_conn_str) {
   console.error('DB_CONN_STR variable not set!');
 }
 
+var itemCount = 12;
+
 // GET: get all todo items
 router.get('/all', /* mongoGetAll */ (req, res, next) => {
-  res.status(200).json( getAllData(12) );
+  res.status(200).json( getAllData(itemCount) );
 });
 
 // GET: get todo item
@@ -21,7 +23,7 @@ router.get('/:id', /* mongoGet */ (req, res, next) => {
 
 // POST: create todo item
 router.post('/new', /* mongoPost */ (req, res, next) => {
-  res.status(201).json( getData(0, "new") );
+  res.status(201).json( getData(itemCount++, "new") );
 });
 
 // PUT: update todo item
@@ -31,7 +33,7 @@ router.put('/:id', /* mongoPut */ (req, res, next) => {
 
 // DELETE: delete todo item
 router.delete('/:id', /* mongoDel */ (req, res, next) => {
-  res.status(200).json( getData(req.params.id, "deleted") );
+  res.status(200).json( getData(itemCount--, "deleted") );
 });
 
 
@@ -44,10 +46,10 @@ function getData(id) {
     message: 'Fake data attached',
     data: {
       item_id: id,
-      title: 'item.title',
-      date: d.toGMTString(),
-      category: 'item.category',
-      description: 'item.description',
+      title: 'item #'+id,
+      date: getDate(),
+      category: getCategory(),
+      description: getSentence(),
       done: false
     }
   };
@@ -55,16 +57,14 @@ function getData(id) {
 
 // temporary code because the mongodb connection doesn't work on school network
 function getAllData(n) {
-  let d = new Date;
-  d = d.toGMTString();
   let resData = [];
   for (var i = 0; i < n; i++) {
     resData.push({
       item_id: i,
       title: 'item #'+i,
-      date: d,
-      category: 'item.category',
-      description: 'item.description',
+      date: getDate(),
+      category: getCategory(),
+      description: getSentence(),
       done: false
     });
   }
@@ -75,7 +75,19 @@ function getAllData(n) {
   };
 }
 
+function getDate() {
+  let d = new Date;
+  return d.toGMTString();
+}
 
+function getSentence() {
+  return faker.lorem.sentence();
+}
+
+function getCategory() {
+  let randCatId = Math.floor(Math.random() * 4);
+  return ['University', 'Housework', 'Career', 'Activities', 'Miscellaneous'][randCatId];
+}
 
 // DATABASE FUNCTIONS
 function mongoGet(req, res, next) {

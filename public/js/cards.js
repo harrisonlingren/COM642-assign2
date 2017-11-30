@@ -1,7 +1,10 @@
 $(document).ready( () => {
     // load cards
     loadTodoCards();
+	
 });
+
+const todoItemsData = [];
 
 function loadTodoCards() {
     // GET endpoint for all to-do items
@@ -9,6 +12,7 @@ function loadTodoCards() {
         // iterate over array of to-do items and insert '.card' elements
         $.each(res.data, (idx, item) => {
             createNewCard(item);
+            todoItemsData.push(item);
         });
 
         initCardEvents();
@@ -61,6 +65,8 @@ function initCardEvents() {
             type: 'DELETE',
             success: (result, status, response) => {
                 thisCard.remove();
+                todoItemsData.splice(todoItemId, 1);
+                alerts();
             },
             error: (result, status, response) => {
                 console.error(response);
@@ -114,3 +120,6 @@ function createNewCard(item) {
 function parseBoolean(b) {
     return b == 'true';
 }
+
+
+
