@@ -3,4 +3,13 @@
 **COM 642, Fall 2017**  
 **Jorge Feijoo, Gareth Patterson, Harrison Lingren**
 
-Live demo: [com642-a16.herokuapp.com](https://com642-a16.herokuapp.com)
+## Live demo: 
+
+[com642-a16.herokuapp.com](https://com642-a16.herokuapp.com)
+
+## To run locally:
+
+1. Clone the reposityory and `cd A16`
+2. Run `npm install`
+3. Build and run the app with `npm start`
+4. Open your browser to [http://localhost:3000](http://localhost:3000)
