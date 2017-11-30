@@ -21,11 +21,19 @@ function number() {
     $("span.top-label.label.label-warning").text(length);
 }
 
+function daysLeft(day) {
+    let today = new Date();
+    day = new Date(day);
+    let dayInMS = 1000*60*60*24;
+    return Math.round( (day - today) / dayInMS );
+}
+
 function alerts() {
     $('.dropdown-alerts').empty();
     $.each(cardsArray, (idx, item) => {
         var i = $('<i class="fa fa-tasks fa-fw"></i>');
-        var span = $('<span class="pull-right text-muted small"></span>').text('# minutes ago');
+        console.log(item.date);
+        var span = $('<span class="pull-right text-muted small"></span>').text( daysLeft(item.date) + ' days left');
         var div = $('<div></div>').append(i).append(item.title).append(span);
         var a = $('<a href="#"></a>').append(div);
         var li = $('<li></li>').append(a);
