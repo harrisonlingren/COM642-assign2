@@ -164,6 +164,7 @@ border-color: #007a99;
 
 
 
+
 /* Clear floats (clearfix hack) */
 .btn-group:after {
     content: "";
@@ -180,15 +181,16 @@ border-color: #007a99;
     background-color: #76a7f7;
 }
 .btn-group button {
-    background-color: #c1bfba;
+    background-color: white;
     border: 1px solid black; /* Green border */
-    color: black; /* Black text */
     width: 278px;
     cursor: pointer; /* Pointer/hand icon */
     display: block; /* Float the buttons side by side */
     padding-bottom: 10px;
     padding-top: 10px;
     font-weight: bold;
+    color: black;
+    border: 1px solid black;
 }
 
 .btn-group button:not(:last-child) {
@@ -206,3 +208,4 @@ border-color: #007a99;
 .btn-group button:hover {
     background-color: #76a7f7;
 }
+
