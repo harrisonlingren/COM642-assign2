@@ -1,8 +1,9 @@
 $(document).ready( () => {
     getCards();
-
+    $(".settings-panel").hide();
     $('i.fa-bell').parent().click( () => { alerts();
     });
+    $("button.btn.btn-primary.save-template").parent().click( () => { setTemplate();
 });
 
 function getCards() {
@@ -37,4 +38,8 @@ function alerts() {
 var cardsArray = [];
 function buildArray(item){
     cardsArray.push(item);
+}
+    
+function setTemplate(){
+    
 }
