@@ -1,34 +1,9 @@
 $(document).ready( () => {
+    // if search button clicked, filter by search term
     $('.sidebar-search .btn.btn-default').click( () => {
-        let cardsToDisplay = [];
-        
-        // check that the search bar has text
         let search = $('.sidebar-search input[type="text"]').val();
-        if (search != '' && search) {
-            
-            // add todo items that match the search term to the result
-            $.each(todoItemsData, (idx, todoItem) => {
-                if (todoItem.title.includes(search) || todoItem.description.includes(search)) {
-                    cardsToDisplay.push(todoItem);
-                }
-            });
-
-            // clear cards and re-build from search results
-            $('.cardContainer').empty();
-            $.each(cardsToDisplay, (idx, card) => {
-                createNewCard(card);
-            });
-
-        // if search empty, show all
-        } else if (search == '') {
-            $('.cardContainer').empty();
-            $.each(todoItemsData, (idx, card) => {
-                createNewCard(card);
-            });
-        }
+        filterCards(search, 'search');
     });
-
-
 
     // if Enter key pressed in search box, do search
     $('.sidebar-search input[type="text"]').keypress((e) => {
@@ -38,4 +13,32 @@ $(document).ready( () => {
         }
     });
 
+    // if category button clicked, filter by category
+    $('')
+
 });
+
+function filterCards(filterTerm, mode) {
+    // add todo items that match the search term to the result
+    let results = [];
+    $.each(todoItemsData, (idx, todoItem) => {
+        // search based on term
+        if (mode == 'search') {
+            if (todoItem.title.includes(filterTerm) || todoItem.description.includes(filterTerm)) {
+                results.push(todoItem);
+            }
+
+        // filter based on category
+        } else if (mode == 'category') {
+            if (todoItem.category == filterTerm) {
+                results.push(todoItem);
+            }
+        }        
+    });
+
+    // clear cards and re-build from filtered results
+    $('.cardContainer').empty();
+    $.each(results, (idx, card) => {
+        createNewCard(card);
+    });
+}
