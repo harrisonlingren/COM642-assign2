@@ -34,6 +34,49 @@ router.delete('/:id', /* mongoDel */ (req, res, next) => {
   res.status(200).json( getData(req.params.id, "deleted") );
 });
 
+
+// NON-DATABASE data functions
+// temporary data function because the mongodb connection doesn't work on school network
+function getData(id) {
+  // temporary code because the mongodb connection doesn't work on school network
+  let d = new Date;
+  return {
+    message: 'Fake data attached',
+    data: {
+      item_id: id,
+      title: 'item.title',
+      date: d.toGMTString(),
+      category: 'item.category',
+      description: 'item.description',
+      done: false
+    }
+  };
+}
+
+// temporary code because the mongodb connection doesn't work on school network
+function getAllData(n) {
+  let d = new Date;
+  d = d.toGMTString();
+  let resData = [];
+  for (var i = 0; i < n; i++) {
+    resData.push({
+      item_id: i,
+      title: 'item #'+i,
+      date: d,
+      category: 'item.category',
+      description: 'item.description',
+      done: false
+    });
+  }
+  
+  return {
+    message: 'All fake data',
+    data: resData
+  };
+}
+
+
+
 // DATABASE FUNCTIONS
 function mongoGet(req, res, next) {
   let itemId = parseInt(req.params.id);
