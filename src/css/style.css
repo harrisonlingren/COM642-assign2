@@ -46,8 +46,9 @@
   right: 24px;
 }
 
-.page-wrapper {
+#page-wrapper {
   height: 100%;
+  margin-left: 278px;
 }
 
 .navbar-toggle {
@@ -72,6 +73,6 @@
   color: white !important;
 }
 
-#page-wrapper { 
-  margin-left: 278px;
+body { 
+  background-color: #d1d4d8;
 }

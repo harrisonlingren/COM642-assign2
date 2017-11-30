@@ -48,7 +48,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// live-reload
-app.use(require('connect-livereload')());
-
 module.exports = app;
