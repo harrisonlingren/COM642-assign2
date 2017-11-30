@@ -143,63 +143,10 @@
           i.fa.fa-bell.fa-3x
         // dropdown alerts
         ul.dropdown-menu.dropdown-alerts
-          li
-            a(href='#')
-              div
-                i.fa.fa-comment.fa-fw
-                | New Comment
-                |                                     
-                span.pull-right.text-muted.small 4 minutes ago
-          |                         
-          li.divider
-          |                         
-          li
-            a(href='#')
-              div
-                i.fa.fa-twitter.fa-fw
-                | 3 New Followers
-                |                                     
-                span.pull-right.text-muted.small 12 minutes ago
-          |                         
-          li.divider
-          |                         
-          li
-            a(href='#')
-              div
-                i.fa.fa-envelope.fa-fw
-                | Message Sent
-                |                                     
-                span.pull-right.text-muted.small 4 minutes ago
-          |                         
-          li.divider
-          |                         
-          li
-            a(href='#')
-              div
-                i.fa.fa-tasks.fa-fw
-                | New Task
-                |                                     
-                span.pull-right.text-muted.small 4 minutes ago
-          |                         
-          li.divider
-          |                         
-          li
-            a(href='#')
-              div
-                i.fa.fa-upload.fa-fw
-                | Server Rebooted
-                |                                     
-                span.pull-right.text-muted.small 4 minutes ago
-          |                         
-          li.divider
-          |                         
-          li
-            a.text-center(href='#')
-              strong See All Alerts
-              |                                 
-              i.fa.fa-angle-right
-        // end dropdown-alerts
-      |                 
+                                
+        li.divider
+        |                         
+        // end dropdown-alerts        
       li.dropdown
         a.dropdown-toggle(data-toggle='dropdown', href='#')
           i.fa.fa-user.fa-3x
@@ -235,8 +182,6 @@
             li
               // user image section
               .user-section
-                button.btn.btn-default.btn-circle.btn-close(type="button")
-                    i.fa.fa-times
                 .user-section-inner
                   img(src="http://www.qygjxz.com/data/out/190/5691490-profile-pictures.png")
                 |                             
@@ -261,12 +206,14 @@
               // end search s
               // second-level-items
           // end side-menu
-          .btn-group
+          .btn-group.categories
             button University
             button Housework
             button Career
             button Activities 
             button Miscellaneous
+            button
+              i All tasks
            
         // end sidebar-collapse
       // end navbar side
