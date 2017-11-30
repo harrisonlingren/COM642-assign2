@@ -178,7 +178,7 @@ border-color: #007a99;
 
 /* Add a background color on hover */
 .btn-group button:hover {
-    background-color: #76a7f7;
+    background-color: grey;
 }
 .btn-group button {
     background-color: white;
