@@ -30,7 +30,7 @@ gulp.task('styles', function(){
 });
 
 gulp.task('scripts', function(){
-  return gulp.src(['src/plugins/bootstrap.min.js', 'src/js/**/*.js'])
+  return gulp.src(['src/plugins/jquery.min.js', 'src/plugins/jquery-ui.min.js', 'src/plugins/bootstrap/bootstrap.min.js', 'src/js/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(sourcemaps.init())
