@@ -176,7 +176,6 @@ padding: 20px 15px;
 }
 .btn-group button {
     background-color: white;
-    border: 1px solid black; /* Green border */
     width: 278px;
     cursor: pointer; /* Pointer/hand icon */
     display: block; /* Float the buttons side by side */
@@ -184,10 +183,10 @@ padding: 20px 15px;
     padding-top: 10px;
     font-weight: bold;
     color: black;
-    border: 1px solid black;
+
 }
 
-.btn-group button:not(:last-child) {
+.btn-group button {
     border-right: none; /* Prevent double borders */
 }
 

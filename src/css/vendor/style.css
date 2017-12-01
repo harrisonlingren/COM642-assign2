@@ -24,7 +24,9 @@ limitations under the License.*/
  body {
     background-color: #f8f8f8;
 }
-
+html {
+    font-family: 14px/1.4 Helvetica,Arial,sans-serif;
+}
 /* Wrappers */
 
 /* ------------------------------- */
@@ -32,19 +34,18 @@ limitations under the License.*/
  #wrapper {
     width: 100%;
     margin-top: 55px!important;
-    background-color:#04B173;
 }
 
 #page-wrapper {
     padding: 0 15px;
-    min-height: 568px;
     margin-left: 278px;
-     background-color:rgb(209, 212, 216);
+    background: linear-gradient(141deg, #f2f2f2 0%, #d9d9d9 51%, #999999 75%);
+    
 }
 
 
 .navbar-static-side ul li {
-    border-bottom:1px solid #007a99 !important;
+    border-bottom:1px solid black !important;
 }
 
 /* Navigation */
