@@ -1,10 +1,10 @@
 #wrapper
   // navbar top
-  nav#navbar.navbar.navbar-default.navbar-fixed-top(role='navigation')
+  nav#navbar.navbar.navbar-default.navbar-fixed-top.navy(role='navigation')
     // navbar-header
     .navbar-header
       button.navbar-toggle(type='button')
-        i.fa.fa-bars                
+        i.fa.fa-bars
       a.navbar-brand(href='/')
         h1 TO-DO APP
     // end navbar-header
@@ -14,11 +14,11 @@
       li.dropdown
         a.dropdown-toggle(data-toggle='dropdown', href='#')
           span.top-label.label.label-warning 5
-          |   
+          |
           i.fa.fa-clock-o.fa-3x
         // dropdown alerts
         ul.dropdown-menu.dropdown-alerts
-        // end dropdown-alerts        
+        // end dropdown-alerts
       li.dropdown
         a.dropdown-toggle(data-toggle='dropdown', href='#')
           i.fa.fa-user.fa-3x
@@ -33,9 +33,9 @@
             a(href='#' data-toggle="modal" data-target="#settings-modal")
               i.fa.fa-gear.fa-fw
               | Settings
-          |                         
+          |
           li.divider
-          |                         
+          |
           li
             a(href='login.html')
               i.fa.fa-sign-out.fa-fw
@@ -45,7 +45,7 @@
     // end navbar-top-links
   // end navbar top
   // navbar side
-  div.nav-side(data-collapsed="false")
+  div.nav-side.navy-side(data-collapsed="false")
       nav.navbar-default.navbar-static-side(role='navigation')
         // sidebar-collapse
         .sidebar-collapse
@@ -56,22 +56,22 @@
               .user-section
                 .user-section-inner
                   img(src="http://www.qygjxz.com/data/out/190/5691490-profile-pictures.png")
-                |                             
+                |
                 .user-info
                   div
-                    | Some 
+                    | Some
                     strong User
-                  |                                 
+                  |
                   .user-text-online
                     span.user-circle-online.btn.btn-success.btn-circle
                     | &nbsp;Belfast
               // end user image section
-            |                     
-            li.sidebar-search
+            |
+            li.sidebar-search.navy-search
               // search section
               .input-group.custom-search-form
                 input.form-control(type='text', placeholder='Search...')
-                |                             
+                |
                 span.input-group-btn
                   button.btn.btn-default(type='button')
                     i.fa.fa-search
@@ -82,11 +82,11 @@
             button University
             button Housework
             button Career
-            button Activities 
+            button Activities
             button Miscellaneous
             button
               i All tasks
-           
+
         // end sidebar-collapse
       // end navbar side
       // page-wrapper

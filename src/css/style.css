@@ -1,5 +1,4 @@
 /* COM 642 A16 Customization */
-
 .card{
   margin: 10px;
   padding: 10px;
@@ -29,7 +28,7 @@
 }
 
 .done {
-  text-decoration: line-through; 
+  text-decoration: line-through;
 }
 
 .cardContainer {
@@ -37,7 +36,7 @@
 }
 
 .card label {
-  margin-right: 4px; 
+  margin-right: 4px;
 }
 
 #new-item {
@@ -73,6 +72,95 @@
   color: white !important;
 }
 
-body { 
+.red{
+  background-color: #660000;
+  border-color: #330000;
+}
+.red-side{
+  background-color: #ff3333;
+}
+.red-search{
+  background-color: #ff3333;
+}
+.red-icon {
+  background-color: #ff3333;
+  border-color: #800000;
+}
+.red-icon:hover{
+  background-color: #ff4d4d;
+  border-color: #800000;
+}
+.navy{
+  background-color: #00334d;
+}
+.navy-side{
+  background-color: #003d66;
+}
+.navy-search{
+  background-color: #003d66;
+}
+.navy-icon{
+  background-color: #003d66;
+  border-color: #357ebd;
+}
+.navy-icon:hover{
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+
+.dark{
+  background-color: #262626;
+}
+.dark-side{
+  background-color: #666666;
+}
+.dark-search{
+  background-color: #666666;
+}
+
+.dark-icon{
+  background-color: #666666;
+  border-color: #000000;
+}
+.dark-icon:hover{
+  background-color: #999999;
+  border-color: #000000;
+}
+.cake{
+  background-color: #ff4da6;
+}
+.cake-side{
+  background-color: #ffe6ff;
+}
+.cake-search{
+  background-color: #ffe6ff;
+}
+.cake-icon{
+  background-color: #ff99dd;
+  border-color: #b30047;
+}
+.cake-icon:hover{
+  background-color: #ffb3e6;
+  border-color: #b30047;
+}
+.retro{
+  background-color: #000000;
+}
+.retro-side{
+  background-color: #39e600;
+}
+.retro-search{
+  background-color: #39e600;
+}
+.retro-icon{
+  background-color: #39e600;
+  border-color:  #000000;
+}
+.retro-icon:hover{
+  background-color: #80ff80;
+  border-color:  #000000;
+}
+
+body {
   background-color: #d1d4d8;
 }

@@ -31,8 +31,8 @@ limitations under the License.*/
 
  #wrapper {
     width: 100%;
-    margin-top: 55px!important; 
-    background-color:#04B173; 
+    margin-top: 55px!important;
+    background-color:#04B173;
 }
 
 #page-wrapper {
@@ -41,7 +41,7 @@ limitations under the License.*/
     margin-left: 278px;
      background-color:rgb(209, 212, 216);
 }
-    
+
 
 .navbar-static-side ul li {
     border-bottom:1px solid #007a99 !important;
@@ -56,7 +56,7 @@ limitations under the License.*/
  .navbar-top-links li {
     display: inline-block;
 }
-      
+
 .navbar-top-links li:last-child {
     margin-right: 15px;
 }
@@ -116,7 +116,6 @@ limitations under the License.*/
 .sidebar-search {
     padding: 15px;
     width: 278px;
-    background-color: #003d4d;
 }
 .arrow {
     float: right;
@@ -329,4 +328,3 @@ table.dataTable thead .sorting:after {
 .show-grid {
     margin: 15px 0;
 }
-
