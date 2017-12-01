@@ -2,11 +2,13 @@
 /*====================================
  Free To Use For Personal And Commercial Usage
 Author: http://binarytheme.com
- Share Us if You Like our work 
+ Share Us if You Like our work
  Enjoy Our Codes For Free always.
 ======================================*/
 
 /* user image section */
+
+
 .user-section {
     margin-top:20px;
     font-size:22px;
@@ -58,7 +60,6 @@ Author: http://binarytheme.com
     position: fixed;
     height: 100%;
     width: 278px;
-    background-color: rgb(0, 51, 77);
     border: none !important;
 }
 .nav > li > a:hover, .nav > li > a:focus {
@@ -79,7 +80,7 @@ padding: 20px 15px;
 
 }
 
- #side-menu a {
+#side-menu a {
     color:#fff;
     border-bottom: 1px solid #ffffff !important;
     height: 55px;
@@ -107,10 +108,6 @@ padding: 20px 15px;
 }
 /* tap nvbar Section */
 
-#navbar {
-    background-color:rgb(0, 51, 77);
-}
-
 .navbar-brand {
     padding-left:20px;
 }
@@ -137,20 +134,17 @@ padding: 20px 15px;
 .margin-tips {
     margin:5px;
 }
-.navbar-default {
-border-color: #007a99;
-}
 /*media queries*/
 
-@media(min-width:768px) 
+@media(min-width:768px)
 {
     #page-wrapper {
         position: inherit;
         margin: 0 0 0 250px;
         padding: 0 30px;
         min-height: 1000px;
-       
-       
+
+
     }
 
 }
@@ -158,7 +152,7 @@ border-color: #007a99;
 @media(max-width:768px) {
 #wrapper {
     margin-top:140px!important;
-    
+
 }
 }
 
@@ -208,4 +202,3 @@ border-color: #007a99;
 .btn-group button:hover {
     background-color: #76a7f7;
 }
-
