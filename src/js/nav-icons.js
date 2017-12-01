@@ -1,10 +1,10 @@
 $(document).ready( () => {
-    getCards();
+    updateCards();
     $(".settings-panel").hide();
     $('i.fa-bell').parent().click( () => { alerts(); });
 });
 
-function getCards() {
+function updateCards() {
     // GET endpoint for all to-do items
     $.getJSON('/item/all', (res) => {
         // iterate over array of to-do items and insert '.card' elements
