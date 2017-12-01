@@ -14,13 +14,13 @@
   button.btn-danger {
     position: relative;
     top: -40px;
-    right: -180px;
+    right: -190px;
   }
 
   button.btn-info {
     position: relative;
     top: -40px;
-    left: -180px;
+    left: -190px;
   }
 
   label {
@@ -77,6 +77,13 @@
   margin-left: 48px;
   margin-top: 12px;
   color: white !important;
+}
+
+button.add-categorie {
+  background-color: #99ffcc;
+}
+button.add-categorie:hover {
+  background-color: #ccffe6;
 }
 
 

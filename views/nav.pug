@@ -13,7 +13,7 @@
       // main dropdown
       li.dropdown
         a.dropdown-toggle(data-toggle='dropdown', href='#')
-          span.top-label.label.label-success 5
+          span.top-label.label.label-warning 5
           |
           i.fa.fa-clock-o.fa-3x
         // dropdown alerts
@@ -85,6 +85,8 @@
             button Activities
             button Miscellaneous
             button All tasks
+            button.add-categorie(data-toggle="modal" data-target="#add-category")
+              i.fa.fa-plus
 
         // end sidebar-collapse
       // end navbar side
