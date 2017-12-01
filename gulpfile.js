@@ -18,7 +18,7 @@ gulp.task('images', function(){
 });
 
 gulp.task('styles', function(){
-  gulp.src(['src/plugins/**/*.css', 'src/css/**/*.scss', 'src/css/**/*.css'])
+  gulp.src(['src/plugins/**/*.css', 'src/css/vendor/*css', 'src/css/*css'])
     .pipe(sourcemaps.init())
       .pipe(concat('bundle.css'))
       .pipe(sass())
