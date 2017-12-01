@@ -9,32 +9,20 @@ if (!db_conn_str) {
   console.error('DB_CONN_STR variable not set!');
 }
 
-var itemCount = 12;
-
 // GET: get all todo items
-router.get('/all', mongoGetAll /* (req, res, next) => {
-  res.status(200).json( getAllData(itemCount) );
-} */);
+router.get('/all', mongoGetAll );
 
 // GET: get todo item
-router.get('/:id', mongoGet /* (req, res, next) => {
-  res.status(200).json( getData(req.params.id, 'fetched') );
-} */);
+router.get('/:id', mongoGet );
 
 // POST: create todo item
-router.post('/new', mongoPost /* (req, res, next) => {
-  res.status(201).json( getData(itemCount++, "new") );
-} */);
+router.post('/new', mongoPost );
 
 // PUT: update todo item
-router.put('/:id', mongoPut /* (req, res, next) => {
-  res.status(200).json( getData(req.params.id, "updated") );
-} */);
+router.put('/:id', mongoPut );
 
 // DELETE: delete todo item
-router.delete('/:id', mongoDel /* (req, res, next) => {
-  res.status(200).json( getData(itemCount--, "deleted") );
-} */);
+router.delete('/:id', mongoDel );
 
 
 // NON-DATABASE data functions
@@ -117,7 +105,7 @@ function mongoGet(req, res, next) {
           'message': 'Error: todo item ' + itemId + ' was not found',
           'data': todoItem
         }; res.status(404).json(resData);
-      }    
+      }
     });
   });
 }
@@ -148,8 +136,6 @@ function mongoPost(req, res, next) {
     description: req.body.description,
     done: parseBoolean(req.body.done)
   }
-  
-  console.log(req.body);
   
   // send to DB here
   mdb.connect(db_conn_str, (err, db) => {
@@ -222,7 +208,7 @@ function mongoPut(req, res, next) {
             finalUpdateObj[key] = update[key];
           } else {
             finalUpdateObj[key] = todoItem[key];
-          } console.log(finalUpdateObj);
+          }
         });
 
         // write to database
