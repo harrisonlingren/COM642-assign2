@@ -104,6 +104,9 @@ function initCardEvents() {
         $('#item-description').val(todoItem.description);
         $('#edit-modal button.btn-primary').attr('data-todoid', todoItemId);
     });
+
+    // tooltips
+    $('[data-toggle=tooltip]').tooltip();
 }
 
 function createNewCard(item) {
@@ -128,6 +131,10 @@ function createNewCard(item) {
 
     let card = $('<div class="card w-25 p-3"></div>')
         .attr('data-todoid', item.item_id)
+        .attr('data-toggle', 'tooltip')
+        .attr('data-html', 'true')
+        .attr('data-placement', 'top')
+        .attr('title', '<b>Date:</b> ' + (new Date(item.date).toISOString().substring(0,10)))
         .append(cardTitle)
         .append(cardClose)
         .append(cardEdit)

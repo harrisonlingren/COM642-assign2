@@ -58,15 +58,6 @@ $(document).ready(() => {
 
 
 function editSuccess(result, status, response) {
-    if (response.status == 200) {
-        /* let todoItemId = result.data.item_id;
-        let cardSelector = '.card[data-todoid="' + todoItemId + '"]';
-        $(cardSelector + ' .card-title').text(result.data.title);
-        $(cardSelector + ' .card-text').text(result.data.description);
-        $(cardSelector + ' input[type="checkbox"]').attr('checked', result.data.done); */
-
-        updateCards();
-    } else {
-        console.error('Could not edit to-do item!');
-    }
+    if (response.status == 200) { updateCards(); } 
+    else { console.error('Could not edit to-do item!'); }
 }
