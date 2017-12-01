@@ -11,10 +11,7 @@ function loadTodoCards() {
         // iterate over array of to-do items and insert '.card' elements
         $.each(res.data, (idx, item) => {
             createNewCard(item);
-            todoItemsData.push(item);
         });
-
-        initCardEvents();
     });
 }
 
@@ -34,11 +31,12 @@ function initCardEvents() {
 
     // clicking checkbox crosses out text/title
     $('.card input[type="checkbox"]').click((e) => {
-        
-        let todoItemId = $(e.currentTarget).parent().attr('id');
-        todoItemId = parseInt( todoItemId[ todoItemId.length-1] );
-        
-        let itemDone = $('#todo'+todoItemId+' input[type="checkbox"]').is(':checked');
+        let thisCard = $(e.currentTarget).parent();
+        let todoItemId = thisCard.data('todoid');
+
+        let cardSelector = '.card[data-todoid="' +todoItemId + '"]';
+        let itemDone = $(cardSelector + ' input[type="checkbox"]').is(':checked');
+        console.log($(cardSelector + ' input[type="checkbox"]'), itemDone);
         $.ajax({
             url: '/item/'+todoItemId,
             type: 'PUT',
@@ -46,19 +44,18 @@ function initCardEvents() {
             success: editSuccess,
             error: () => {
                 console.error('Could not change to-do item status to ' + itemDone);
-                $('#todo'+todoItemId+' .card-title, #todo'+todoItemId+' .card-text').toggleClass('done');
+                $(cardSelector + ' .card-title, ' + cardSelector + ' .card-text').toggleClass('done');
                 $(this).attr('checked', this.checked);
             }
         });
 
-        $('#todo'+todoItemId+' .card-title, #todo'+todoItemId+' .card-text').toggleClass('done');
+        $(cardSelector + ' .card-title, ' + cardSelector + ' .card-text').toggleClass('done');
     });
 
     // Card delete button
     $('.card .btn.btn-danger').click((e) => {
         let thisCard = $(e.currentTarget).parent();
-        let todoItemId = thisCard.attr('id');
-        todoItemId = parseInt( todoItemId[ todoItemId.length-1] );
+        let todoItemId = parseInt(thisCard.data('todoid'));
 
         $.ajax({
             url: '/item/' + todoItemId,
@@ -66,7 +63,7 @@ function initCardEvents() {
             success: (result, status, response) => {
                 thisCard.remove();
                 todoItemsData.splice(todoItemId, 1);
-                alerts();
+                updateCards();
             },
             error: (result, status, response) => {
                 console.error(response);
@@ -87,18 +84,26 @@ function initCardEvents() {
     });
 
     // edit buttons on cards
-    $('.edit-btn').click(() => {
+    $('.edit-btn').click((e) => {
+        let thisCard = $(e.currentTarget).parent();
+        let todoItemId = parseInt(thisCard.data('todoid'));
+
+        console.log('editing: ', thisCard, todoItemId);
+
         $('#edit-modal button.btn-primary').attr('data-editmode', 'edit');
+        $('#edit-modal button.btn-primary').attr('data-todoid', todoItemId);
     });
 }
 
 function createNewCard(item) {
+    // push item to cache
+    todoItemsData.push(item);
+
     let container = $('.cardContainer');
     
     let cardTitle = $('<h4 class="card-title"></h4>').text(item.title);
     let cardText = $('<p class="card-text"></p>').text(item.description);
-    let cardLabel = $('<label>Completed</label>')
-        .attr('for', 'todo'+item.item_id) ;
+    let cardLabel = $('<label>Completed</label>');
     let cardBox = $('<input type="checkbox" />').attr('checked', parseBoolean(item.done));
     if (parseBoolean(item.done)) {
         cardTitle.addClass('done'); cardText.addClass('done');
@@ -113,7 +118,7 @@ function createNewCard(item) {
         .append('<i class="fa fa-pencil"></i>');
 
     let card = $('<div class="card"></div>')
-        .attr('id', 'todo'+item.item_id)
+        .attr('data-todoid', item.item_id)
         .append(cardTitle)
         .append(cardClose)
         .append(cardEdit)
@@ -122,6 +127,7 @@ function createNewCard(item) {
         .append(cardBox);
 
     container.append(card);
+    initCardEvents(); updateCards();
 }
 
 function parseBoolean(b) {

@@ -21,19 +21,21 @@ $(document).ready(() => {
 
     let saveBtn = $('#edit-modal button.btn-primary');
     saveBtn.click(() => {
-
+        // check if creating or editing an item
         let editMode = saveBtn.data('editmode');
-        let todoItemId = saveBtn.data('todoid');
-
         if (editMode == 'edit') {
-            // ajax call to update task
+            let todoItemId = parseInt(saveBtn.data('todoid'));
+            let cardSelector = '.card[data-todoid="' + todoItemId + '"]';
 
+            console.log('editing: ' + cardSelector + ' ' + todoItemId);
+
+            // ajax call to update task
             let d = new Date( $('#item-date').val() );
             let todoItemData = {
                 title: $('#item-title').val(),
                 category: $('#item-category').val(),
                 date: d,
-                done: ( $('#todo'+todoItemId+' input[type="checkbox"]').is(':checked') ),
+                done: parseBoolean( $(cardSelector + ' input[type="checkbox"]').is(':checked') ),
                 description: $('#item-description').val()
             };
 
@@ -46,13 +48,12 @@ $(document).ready(() => {
 
         } else if (editMode == 'new') {
             // ajax call to add new task
-
             let d = new Date( $('#item-date').val() );
             let todoItemData = {
                 title: $('#item-title').val(),
                 category: $('#item-category').val(),
                 date: d,
-                done: ( $('#todo'+todoItemId+' input[type="checkbox"]').is(':checked') ),
+                done: false,
                 description: $('#item-description').val()
             };
 
@@ -61,11 +62,8 @@ $(document).ready(() => {
                 type: 'POST',
                 data: todoItemData,
                 success: (result, status, response) => {
-                    if (response.status == 201) {
-                        createNewCard(result.data);
-                    } else {
-                        console.error('Could not edit to-do item!');
-                    }
+                    if (response.status == 201) { createNewCard(result.data); }
+                    else { console.error('Could not edit to-do item!'); }
                 }
             });
 
@@ -79,9 +77,12 @@ $(document).ready(() => {
 function editSuccess(result, status, response) {
     if (response.status == 200) {
         let todoItemId = result.data.item_id;
-        $('#todo'+todoItemId+' .card-title').text(result.data.title);
-        $('#todo'+todoItemId+' .card-text').text(result.data.description);
-        $('#todo'+todoItemId+' input[type="checkbox"]').attr('checked', result.data.done);
+        let cardSelector = '.card[data-todoid="' + todoItemId + '"]';
+        $(cardSelector + ' .card-title').text(result.data.title);
+        $(cardSelector + ' .card-text').text(result.data.description);
+        $(cardSelector + ' input[type="checkbox"]').attr('checked', result.data.done);
+
+        updateCards();
     } else {
         console.error('Could not edit to-do item!');
     }

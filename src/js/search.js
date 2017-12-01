@@ -7,7 +7,7 @@ $(document).ready( () => {
 
     // if Enter key pressed in search box, do search
     $('.sidebar-search input[type="text"]').keypress((e) => {
-        let code = (e.keyCode ? e.keyCode : e.which);        
+        let code = (e.keyCode ? e.keyCode : e.which);
         if (code == 13) {
             $('.sidebar-search .btn.btn-default').click();
         }
