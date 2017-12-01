@@ -25,7 +25,7 @@ $(document).ready(() => {
         let editMode = saveBtn.data('editmode');
         if (editMode == 'edit') {
             let todoItemId = parseInt(saveBtn.data('todoid'));
-            let cardSelector = $('.card[data-todoid="' + todoItemId + '"]');
+            let cardSelector = '.card[data-todoid="' + todoItemId + '"]';
 
             console.log('editing: ' + cardSelector + ' ' + todoItemId);
 

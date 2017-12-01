@@ -4,9 +4,11 @@ $(document).ready( () => {
     $('i.fa-bell').parent().click( () => { alerts(); });
 });
 
+var cardsArray = [];
 function updateCards() {
     // GET endpoint for all to-do items
     $.getJSON('/item/all', (res) => {
+        cardsArray = [];
         // iterate over array of to-do items and insert '.card' elements
         $.each(res.data, (idx, item) => {
             buildArray(item);
@@ -39,7 +41,7 @@ function alerts() {
     });
 }
 
-var cardsArray = [];
+
 function buildArray(item) {
     cardsArray.push(item);
 }

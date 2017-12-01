@@ -84,8 +84,14 @@ function initCardEvents() {
     });
 
     // edit buttons on cards
-    $('.edit-btn').click(() => {
+    $('.edit-btn').click((e) => {
+        let thisCard = $(e.currentTarget).parent();
+        let todoItemId = parseInt(thisCard.data('todoid'));
+
+        console.log('editing: ', thisCard, todoItemId);
+
         $('#edit-modal button.btn-primary').attr('data-editmode', 'edit');
+        $('#edit-modal button.btn-primary').attr('data-todoid', todoItemId);
     });
 }
 
