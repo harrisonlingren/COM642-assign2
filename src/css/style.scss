@@ -86,7 +86,21 @@ button.add-categorie:hover {
   background-color: #ccffe6;
 }
 
-
+.inName{
+  transition-duration: 1s;
+  width: 200px;
+  height: 80px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: white;
+  padding: 12px 20px 12px 50px;
+}
+.section-name{
+  text-align: center;
+  margin-top: 200px;
+}
 // COLORS for customization
 
 .red{

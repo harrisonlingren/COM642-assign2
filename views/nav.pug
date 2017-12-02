@@ -1,5 +1,9 @@
 #wrapper
   // navbar top
+  div.section-name
+    form(id="nameForm")
+      img(id="nameImg" src="src/img/user.png")
+      input.inName(id="nameInput" type="text" name="search" title="Type in a name" placeholder="Name" value="")
   nav#navbar.navbar.navbar-default.navbar-fixed-top.navy(role='navigation')
     // navbar-header
     .navbar-header
@@ -58,9 +62,9 @@
                   img(src="http://www.qygjxz.com/data/out/190/5691490-profile-pictures.png")
                 |
                 .user-info
-                  div
-                    | Some
-                    strong User
+                  div.name
+                    | Name
+                    strong  Lastname
                   |
                   .user-text-online
                     span.user-circle-online.btn.btn-success.btn-circle
