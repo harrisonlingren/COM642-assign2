@@ -4,7 +4,8 @@ $(document).ready( () => {
         var category = $("#category").val();
         var button = $("<button>" + category + "</button>");
         var option = $("<option>" + category + "</option>");
-        $(".categories").prepend(button);
+        $(".add-category").before(button);
         $('#item-category').append('<option value="foo" selected="selected">' + category + '</option>');
+
     });
 });

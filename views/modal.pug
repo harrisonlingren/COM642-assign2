@@ -61,3 +61,18 @@
         .form-group
             button.btn.btn-default(data-dismiss="modal") Cancel
             button.btn.btn-primary.addCategory(data-dismiss="modal" data-editmode="new") Add category
+
+.modal.section-name
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(type="button" class="close" data-dismiss="modal")
+          span &times;
+        h4.modal-title What's your name?
+      .modal-body
+        .row
+          .col-xs-6
+            img(id="nameImg" src="img/user.png")
+          .col-xs-6
+            input.inName(id="nameInput" type="text" name="search" title="Type in a name" placeholder="Name" value="")
+            button.btn.btn-primary.nameButton.center-block(data-dismiss="modal") Save

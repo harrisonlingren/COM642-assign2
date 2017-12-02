@@ -79,11 +79,12 @@
   color: white !important;
 }
 
-button.add-categorie {
+button.add-category {
   background-color: #99ffcc;
-}
-button.add-categorie:hover {
-  background-color: #ccffe6;
+
+  &:hover {
+    background-color: #ccffe6;
+  }
 }
 
 .inName{
@@ -97,9 +98,15 @@ button.add-categorie:hover {
   background-color: white;
   padding: 12px 20px 12px 50px;
 }
-.section-name{
+
+.section-name {
   text-align: center;
   margin-top: 200px;
+
+  .btn {
+    display: block;
+    margin-top: 24px;
+  }
 }
 // COLORS for customization
 
@@ -194,4 +201,34 @@ button.add-categorie:hover {
 
 body {
   background-color: white;
+}
+
+.terms {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #263238;
+  color: #fff;
+  padding: 24px;
+
+  a {
+    color: #fff;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .dismiss-btn {
+    position: fixed;
+    right: 24px;
+    bottom: 20px;
+    padding: 6px;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    cursor: pointer;
+  }
 }
