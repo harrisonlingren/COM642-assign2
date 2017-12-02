@@ -11,5 +11,5 @@
 
 1. Clone the reposityory and `cd A16`
 2. Run `npm install`
-3. Build and run the app with `npm start`
+3. Build and run the app with `npm run build`
 4. Open your browser to [http://localhost:3000](http://localhost:3000)
