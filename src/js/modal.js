@@ -3,58 +3,54 @@ $(document).ready(() => {
     // change edit modal content based on the task that was clicked
     let modal = $('#edit-modal');
 
-     // check if creating or editing an item
-    let saveBtn = $('#edit-modal button.btn-primary');
-    let editMode = saveBtn.data('editmode');
+    $('.edit-save-btn').click(() => {
+        let todoItemId = parseInt($('.edit-save-btn').data('todoid'));
+        let cardSelector = '.card[data-todoid="' + todoItemId + '"]';
 
-    saveBtn.click(() => {
-        if (editMode == 'edit') {
-            let todoItemId = parseInt(saveBtn.data('todoid'));
-            let cardSelector = '.card[data-todoid="' + todoItemId + '"]';
+        // ajax call to update task
+        let d = new Date( $('#edit-item-date').val() );
+        let todoItemData = {
+            title: $('#edit-item-title').val(),
+            category: $('#edit-item-category').val(),
+            date: d,
+            done: parseBoolean( $(cardSelector + ' input[type="checkbox"]').is(':checked') ),
+            description: $('#edit-item-description').val()
+        };
 
-            // ajax call to update task
-            let d = new Date( $('#item-date').val() );
-            let todoItemData = {
-                title: $('#item-title').val(),
-                category: $('#item-category').val(),
-                date: d,
-                done: parseBoolean( $(cardSelector + ' input[type="checkbox"]').is(':checked') ),
-                description: $('#item-description').val()
-            };
+        $.ajax({
+            url: '/item/' + todoItemId,
+            type: 'PUT',
+            data: todoItemData,
+            success: editSuccess
+        });
+    });
 
-            $.ajax({
-                url: '/item/' + todoItemId,
-                type: 'PUT',
-                data: todoItemData,
-                success: editSuccess
-            });
 
-        } else if (editMode == 'new') {
-            // ajax call to add new task
-            let d = new Date( $('#item-date').val() );
-            let todoItemData = {
-                title: $('#item-title').val(),
-                category: $('#item-category').val(),
-                date: d,
-                done: false,
-                description: $('#item-description').val()
-            };
+    // create new task
+    $('.new-save-btn').click(() => {
+        // ajax call to add new task
+        let d = new Date( $('#new-item-date').val() );
+        let todoItemData = {
+            title: $('#new-item-title').val(),
+            category: $('#new-item-category').val(),
+            date: d,
+            done: false,
+            description: $('#new-item-description').val()
+        };
 
-            $.ajax({
-                url: '/item/new',
-                type: 'POST',
-                data: todoItemData,
-                success: (result, status, response) => {
-                    if (response.status == 201) { updateCards(); }
-                    else { console.error('Could not edit to-do item!'); }
-                }
-            });
-
-        } else {
-            console.error('No edit mode specified!');
-        }
+        $.ajax({
+            url: '/item/new',
+            type: 'POST',
+            data: todoItemData,
+            success: (result, status, response) => {
+                if (response.status == 201) { updateCards(); }
+                else { console.error('Could not edit to-do item!'); }
+            }
+        });
     });
 });
+
+
 
 
 function editSuccess(result, status, response) {

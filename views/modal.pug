@@ -8,10 +8,10 @@
       .modal-body
         .form-group
           label.col-xs-3.control-label Title
-          input.form-control(type="text" id="item-title" name="item-title")
+          input.form-control(type="text" id="edit-item-title" name="edit-item-title")
         .form-group
           label.col-xs-3.control-label Category
-          select.form-control.select-category(type="" id="item-category" name="item-category")
+          select.form-control.select-category(id="edit-item-category" name="edit-item-category")
             option University
             option Housework
             option Career
@@ -19,13 +19,42 @@
             option Miscellaneous
         .form-group
           label.col-xs-3.control-label Date
-          input.form-control(type="date" id="item-date" name="item-date")
+          input.form-control(type="date" id="edit-item-date" name="edit-item-date")
         .form-group
           label.col-xs-3.control-label Description
-          textarea.form-control(placeholder="Description..." id="item-description" name="item-description")
+          textarea.form-control(placeholder="Description..." id="edit-item-description" name="edit-item-description")
         .form-group
             button.btn.btn-default(data-dismiss="modal") Cancel
-            button.btn.btn-primary(data-dismiss="modal" data-editmode="new") Save Task
+            button.btn.btn-primary.edit-save-btn(data-dismiss="modal") Save Task
+
+.modal.fade(id="new-modal")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(type="button" class="close" data-dismiss="modal")
+          span &times;
+        h4.modal-title New task
+      .modal-body
+        .form-group
+          label.col-xs-3.control-label Title
+          input.form-control(type="text" id="new-item-title" name="new-item-title")
+        .form-group
+          label.col-xs-3.control-label Category
+          select.form-control.select-category(type="" id="new-item-category" name="new-item-category")
+            option University
+            option Housework
+            option Career
+            option Activities
+            option Miscellaneous
+        .form-group
+          label.col-xs-3.control-label Date
+          input.form-control(type="date" id="new-item-date" name="new-item-date")
+        .form-group
+          label.col-xs-3.control-label Description
+          textarea.form-control(placeholder="Description..." id="new-item-description" name="new-item-description")
+        .form-group
+            button.btn.btn-default(data-dismiss="modal") Cancel
+            button.btn.btn-primary.new-save-btn(data-dismiss="modal") Save Task
 
 .modal.fade(id="settings-modal")
   .modal-dialog
@@ -45,7 +74,7 @@
             option Retro
         .form-group
             button.btn.btn-default(data-dismiss="modal") Cancel
-            button.btn.btn-primary.save-template(data-dismiss="modal" data-editmode="new") Save Template
+            button.btn.btn-primary.save-template(data-dismiss="modal") Save Template
 
 .modal.section-name
   .modal-dialog

@@ -78,14 +78,11 @@ function initCardEvents() {
 
     // FAB for creating new to-do item
     $('#new-item').click(() => {
-        $('#edit-modal button.btn-primary').attr('data-editmode', 'new');
-
         // reset modal form inputs
         $('#item-title').val('');
         $('#item-category').val('');
         $('#item-date').val('');
         $('#item-description').val('');
-        $('#edit-modal button.btn-primary').attr('');
     });
 
     // edit buttons on cards
@@ -93,16 +90,14 @@ function initCardEvents() {
         let thisCard = $(e.currentTarget).parent();
         let todoItemId = parseInt(thisCard.data('todoid'));
 
-        $('#edit-modal button.btn-primary').attr('data-editmode', 'edit');
-        $('#edit-modal button.btn-primary').attr('data-todoid', todoItemId);
+        $('.edit-save-btn').attr('data-todoid', todoItemId);
 
         let todoItem = todoItemsData[todoItemId];
         let d = new Date(todoItem.date).toISOString().substring(0,10);
-        $('#item-title').val(todoItem.title);
-        $('#item-category').val(todoItem.category);
-        $('#item-date').val( d );
-        $('#item-description').val(todoItem.description);
-        $('#edit-modal button.btn-primary').attr('data-todoid', todoItemId);
+        $('#edit-item-title').val(todoItem.title);
+        $('#edit-item-category').val(todoItem.category);
+        $('#edit-item-date').val( d );
+        $('#edit-item-description').val(todoItem.description);
     });
 
     // tooltips
