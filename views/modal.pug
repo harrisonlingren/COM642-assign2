@@ -11,11 +11,11 @@
           input.form-control(type="text" id="item-title" name="item-title")
         .form-group
           label.col-xs-3.control-label Category
-          select.form-control(type="" id="item-category" name="item-category")
+          select.form-control.select-category(type="" id="item-category" name="item-category")
             option University
             option Housework
             option Career
-            option Activities 
+            option Activities
             option Miscellaneous
         .form-group
           label.col-xs-3.control-label Date
@@ -26,7 +26,7 @@
         .form-group
             button.btn.btn-default(data-dismiss="modal") Cancel
             button.btn.btn-primary(data-dismiss="modal" data-editmode="new") Save Task
-            
+
 .modal.fade(id="settings-modal")
   .modal-dialog
     .modal-content
@@ -40,9 +40,24 @@
           select.form-control(type="" id="template" name="template")
             option Red
             option Dark
-            option Original
-            option White
+            option Navy
+            option Cake
             option Retro
         .form-group
             button.btn.btn-default(data-dismiss="modal") Cancel
             button.btn.btn-primary.save-template(data-dismiss="modal" data-editmode="new") Save Template
+
+.modal.fade(id="add-category")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(type="button" class="close" data-dismiss="modal")
+          span &times;
+        h4.modal-title Categories
+      .modal-body
+        .form-group
+          label.col-xs-3.control-label Add category
+          input.form-control(type="text" id="category" name="category" placeholder="Category")
+        .form-group
+            button.btn.btn-default(data-dismiss="modal") Cancel
+            button.btn.btn-primary.addCategory(data-dismiss="modal" data-editmode="new") Add category

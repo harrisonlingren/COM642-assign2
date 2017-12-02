@@ -1,23 +1,7 @@
 $(document).ready( () => {
-    updateCards();
     $(".settings-panel").hide();
     $('i.fa-bell').parent().click( () => { alerts(); });
 });
-
-function updateCards() {
-    // GET endpoint for all to-do items
-    $.getJSON('/item/all', (res) => {
-        // iterate over array of to-do items and insert '.card' elements
-        $.each(res.data, (idx, item) => {
-            buildArray(item);
-        }); number(); alerts();        
-    });
-}
-
-function number() {
-    var length = cardsArray.length;
-    $("span.top-label.label.label-warning").text(length);
-}
 
 function daysLeft(day) {
     let today = new Date();
@@ -26,20 +10,21 @@ function daysLeft(day) {
     return Math.round( (day - today) / dayInMS );
 }
 
+// populate alerts dropdown with tasks and time remaining
 function alerts() {
+    $("span.top-label.label.label-warning").text(todoItemsData.length);
     $('.dropdown-alerts').empty();
-    $.each(cardsArray, (idx, item) => {
-        var i = $('<i class="fa fa-tasks fa-fw"></i>');
-        var span = $('<span class="pull-right text-muted small"></span>').text( daysLeft(item.date) + ' days left');
-        var div = $('<div></div>').append(i).append(item.title).append(span);
-        var a = $('<a href="#"></a>').append(div);
-        var li = $('<li></li>').append(a);
-        var divider = $('<li class="divider"></li>');
+    $.each(todoItemsData, (idx, item) => {
+        let i = $('<i class="fa fa-tasks fa-fw"></i>');
+        let span = $('<span class="pull-right text-muted small"></span>').text( daysLeft(item.date) + ' days left');
+        let div = $('<div></div>').append(i).append(item.title).append(span);
+        let a = $('<a href="#"></a>')
+            .click( () => {
+                $('.card[data-todoid="' + item.item_id + '"] .edit-btn').click();
+            })
+            .append(div);
+        let li = $('<li></li>').append(a);
+        let divider = $('<li class="divider"></li>');
         $("ul.dropdown-menu.dropdown-alerts").append(li).append(divider);
     });
-}
-
-var cardsArray = [];
-function buildArray(item) {
-    cardsArray.push(item);
 }

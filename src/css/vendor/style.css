@@ -24,28 +24,30 @@ limitations under the License.*/
  body {
     background-color: #f8f8f8;
 }
-
+html {
+    font-family: 14px/1.4 Helvetica,Arial,sans-serif;
+}
 /* Wrappers */
 
 /* ------------------------------- */
 
  #wrapper {
     width: 100%;
-    margin-top: 55px!important; 
-    background-color:#04B173; 
+    margin-top: 55px!important;
 }
 
 #page-wrapper {
     padding: 0 15px;
-    min-height: 568px;
     margin-left: 278px;
-     background-color:rgb(209, 212, 216);
-}
+    background-color: #f2f2f2;
     
+}
+
 
 .navbar-static-side ul li {
-    border-bottom:1px solid #007a99 !important;
+    border-bottom:1px solid white !important;
 }
+
 
 /* Navigation */
 
@@ -56,7 +58,7 @@ limitations under the License.*/
  .navbar-top-links li {
     display: inline-block;
 }
-      
+
 .navbar-top-links li:last-child {
     margin-right: 15px;
 }
@@ -116,7 +118,6 @@ limitations under the License.*/
 .sidebar-search {
     padding: 15px;
     width: 278px;
-    background-color: #003d4d;
 }
 .arrow {
     float: right;
@@ -329,4 +330,3 @@ table.dataTable thead .sorting:after {
 .show-grid {
     margin: 15px 0;
 }
-

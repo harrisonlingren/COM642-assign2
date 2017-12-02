@@ -1,17 +1,22 @@
 $(document).ready( () => {
     // load cards
-    loadTodoCards();
+    updateCards();
 });
 
-const todoItemsData = [];
+// array to hold cards as cached data
+var todoItemsData = [];
 
-function loadTodoCards() {
+// Refresh cards container by getting all cards via AJAX
+function updateCards() {
     // GET endpoint for all to-do items
     $.getJSON('/item/all', (res) => {
+        todoItemsData = [];
+        $('.cardContainer').empty();
         // iterate over array of to-do items and insert '.card' elements
         $.each(res.data, (idx, item) => {
+            todoItemsData.push(item);
             createNewCard(item);
-        });
+        }); alerts(); initCardEvents();
     });
 }
 
@@ -36,7 +41,7 @@ function initCardEvents() {
 
         let cardSelector = '.card[data-todoid="' +todoItemId + '"]';
         let itemDone = $(cardSelector + ' input[type="checkbox"]').is(':checked');
-        console.log($(cardSelector + ' input[type="checkbox"]'), itemDone);
+        
         $.ajax({
             url: '/item/'+todoItemId,
             type: 'PUT',
@@ -84,15 +89,28 @@ function initCardEvents() {
     });
 
     // edit buttons on cards
-    $('.edit-btn').click(() => {
+    $('.edit-btn').click((e) => {
+        let thisCard = $(e.currentTarget).parent();
+        let todoItemId = parseInt(thisCard.data('todoid'));
+
         $('#edit-modal button.btn-primary').attr('data-editmode', 'edit');
+        $('#edit-modal button.btn-primary').attr('data-todoid', todoItemId);
+
+        let todoItem = todoItemsData[todoItemId];
+        let d = new Date(todoItem.date).toISOString().substring(0,10);
+        $('#item-title').val(todoItem.title);
+        $('#item-category').val(todoItem.category);
+        $('#item-date').val( d );
+        $('#item-description').val(todoItem.description);
+        $('#edit-modal button.btn-primary').attr('data-todoid', todoItemId);
     });
+
+    // tooltips
+    $('[data-toggle=tooltip]').tooltip();
 }
 
 function createNewCard(item) {
     // push item to cache
-    todoItemsData.push(item);
-
     let container = $('.cardContainer');
     
     let cardTitle = $('<h4 class="card-title"></h4>').text(item.title);
@@ -111,8 +129,12 @@ function createNewCard(item) {
         .attr('data-todoid', item.item_id)
         .append('<i class="fa fa-pencil"></i>');
 
-    let card = $('<div class="card"></div>')
+    let card = $('<div class="card w-25 p-3"></div>')
         .attr('data-todoid', item.item_id)
+        .attr('data-toggle', 'tooltip')
+        .attr('data-html', 'true')
+        .attr('data-placement', 'top')
+        .attr('title', '<b>Date:</b> ' + (new Date(item.date).toISOString().substring(0,10)))
         .append(cardTitle)
         .append(cardClose)
         .append(cardEdit)
@@ -121,12 +143,8 @@ function createNewCard(item) {
         .append(cardBox);
 
     container.append(card);
-    initCardEvents(); updateCards();
 }
 
 function parseBoolean(b) {
     return (b == 'true' || b == true);
 }
-
-
-
