@@ -39,14 +39,15 @@ html {
 #page-wrapper {
     padding: 0 15px;
     margin-left: 278px;
-    background: linear-gradient(141deg, #f2f2f2 0%, #d9d9d9 51%, #999999 75%);
+    background-color: #f2f2f2;
     
 }
 
 
 .navbar-static-side ul li {
-    border-bottom:1px solid black !important;
+    border-bottom:1px solid #e4e4e4 !important;
 }
+
 
 /* Navigation */
 

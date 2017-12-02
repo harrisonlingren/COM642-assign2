@@ -22,7 +22,6 @@ Author: http://binarytheme.com
     -webkit-border-radius: 3px;
     border-radius: 3px;
     overflow: hidden;
-    display: inline-block;
     float: left;
     margin-right: 15px;
     margin-top: 20px;
@@ -75,7 +74,7 @@ color: #FFFFFF;
 padding: 20px 15px;
 }
 #side-menu {
-    background-color: #003d4d;
+    background-color: white;
     color: white;
 
 }
