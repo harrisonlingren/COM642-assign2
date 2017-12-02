@@ -3,22 +3,18 @@ $(document).ready( () => {
     // show modal
     $('.section-name').modal('show');
     $('.nameButton').click(() => {
-        var itemAppend = '';
+        var itemAppend = ''; var userName = '';
         if (readCookie('userName') === null) {
-            var userName = " "+$(".inName").val();
+            userName = " "+$(".inName").val();
             createCookie("userName",userName,1);
-            itemAppend = $('<span style="font-weight: bold; color:rgb(0, 153, 0);">'+userName+'</span>!').hide().fadeIn(600);
-            $('.section-name').modal('hide');
-            $("#title").append(itemAppend);
-            $("#searchForm").delay(1000).fadeIn(500);
+            $('.name').text(userName);
         } else { 
             $("#nameForm").hide();
             $("#searchForm").show();
-            var un = readCookie("userName");
-            itemAppend = $('<span style="font-weight: bold; color:rgb(0, 153, 0);">'+' '+un+'</span>!').hide().fadeIn(600);
+            userName = readCookie("userName");
+            $('.name').text(userName);
             $("#title").append(itemAppend);
-        }
-
+        } $('.section-name').modal('hide');
     });
 
     $(".inName").focus(function(){
